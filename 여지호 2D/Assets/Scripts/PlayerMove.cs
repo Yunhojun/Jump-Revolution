@@ -22,5 +22,15 @@ public class PlayerMove : MonoBehaviour
         Vector2 move = new Vector2(inputX * speed, originalState.y);
         Player.position += move * Time.deltaTime;
 
+        // 플레이어 점프 구현
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (Player.velocity.y <= 0.0001)
+            {
+                Vector2 jump = new Vector2(0, 300);
+                Player.AddForce(jump);
+            }
+        }
+
     }
 }
