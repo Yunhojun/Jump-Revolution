@@ -62,5 +62,30 @@ public class Mover : MonoBehaviour
             Animator.SetBool("IsJumping", false);
             }
         }
+        if(isLadder)
+        {
+            rigid.gravityScale = 0;
+            float vel = Input.GetAxis("Vertical");
+            rigid.velocity = new Vector2(rigid.velocity.x, vel * maxSpeed);
+        }
+        else
+        {
+            rigid.gravityScale = 3f;
+        }
+    }
+    public bool isLadder;
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Ladder"))
+        {
+            isLadder = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Ladder"))
+        {
+            isLadder = false;
+        }
     }
 }
