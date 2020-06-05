@@ -110,7 +110,7 @@ public class PlayerMove : MonoBehaviour
         {
             onDamaged(collision.transform.position);
         }
-        if (collision.gameObject.tag == "floor" && 
+        if (collision.gameObject.tag == "floor" &&
             this.transform.position.y - collision.transform.position.y > 0)//collide with floor
         {
             InitJumpCount();
