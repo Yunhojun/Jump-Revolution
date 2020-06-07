@@ -14,13 +14,15 @@ public class PlayerMove : MonoBehaviour
     private int jumpCount = 1;
     private const int maxJump = 1;
     private bool jumped;
+    private Transform Character;
+    
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-       
+        Character = GetComponent<Transform>();
     }
     
    void Update()
@@ -36,6 +38,13 @@ public class PlayerMove : MonoBehaviour
         {
             spriteRenderer.flipX = (Input.GetAxisRaw("Horizontal") == -1);
         }
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+            sit();
+
+        if(Input.GetKeyUp(KeyCode.LeftControl))
+            stand();
+                 
+             
    }
 
     void FixedUpdate()
@@ -100,6 +109,19 @@ public class PlayerMove : MonoBehaviour
     public void InitJumpCount()
     {
         jumpCount = maxJump;
+    }
+
+    public void stand()
+    {
+        Character.transform.localScale = new Vector3(1, 1, 0);
+        Character.transform.Translate(new Vector3(0, 0.25f, 0));
+        Debug.Log("stand");
+    }
+    public void sit()
+    {
+        Character.transform.localScale = new Vector3(1, 0.5f, 0);
+        Character.transform.Translate(new Vector3(0, -0.25f, 0));
+        Debug.Log("sit");
     }
 
 
