@@ -70,7 +70,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            rigid.gravityScale = 3f;
+            rigid.gravityScale = 4f;
         }
     }
 
