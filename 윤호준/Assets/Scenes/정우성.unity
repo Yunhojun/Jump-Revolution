@@ -587,13 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6b0c69af6cf4c43978cd7139674950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTimeX: 0
-  smoothTimeY: 0
-  velocity: {x: 0, y: 0}
-  player: {fileID: 0}
-  minPos: {x: 0, y: 0}
-  maxPos: {x: 0, y: 0}
-  bound: 0
 --- !u!1 &1286503801
 GameObject:
   m_ObjectHideFlags: 0
