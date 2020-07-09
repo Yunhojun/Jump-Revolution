@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     protected Rigidbody2D rigid;
-    protected int nextMove;
+    public int nextMove;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
     protected Vector2 spawnPoint;
@@ -28,11 +28,11 @@ public class EnemyMove : MonoBehaviour
     }
 
     //재귀 함수
-    protected void Think()
+    private void Think()
     {
+        Debug.Log("Think start");
         //set Next Active
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
-        print(nextMove);
 
         //Sprite Animation
         anim.SetInteger("WalkSpeed", nextMove);
@@ -43,7 +43,7 @@ public class EnemyMove : MonoBehaviour
 
         //Recusive (보통 코드 맨아래 작성)
         float nextThinkTime = Random.Range(2f, 5f);
-        Invoke("Think", 5f);
+        Invoke("Think", nextThinkTime);
 
     }
 
