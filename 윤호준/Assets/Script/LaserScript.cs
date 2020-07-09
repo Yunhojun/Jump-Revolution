@@ -5,7 +5,8 @@ using UnityEngine;
 public class LaserScript : MonoBehaviour
 {
     [SerializeField]
-    float cycle = 0f;
+    float cycle = 2f;
+    float time = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +16,12 @@ public class LaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cycle += Time.deltaTime;
-        if(cycle >= 2f)
+        time += Time.deltaTime;
+        if(time >= cycle)
         {
             GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
             GetComponent<BoxCollider2D>().enabled = !GetComponent<BoxCollider2D>().enabled;
-            cycle = 0;
+            time = 0;
         }
     }
 }

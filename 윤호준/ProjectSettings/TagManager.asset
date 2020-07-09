@@ -10,6 +10,7 @@ TagManager:
   - Ladder
   - ScaleX
   - ScaleY
+  - Head
   layers:
   - Default
   - TransparentFX

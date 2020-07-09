@@ -14,11 +14,15 @@ public class PlayerMove : MonoBehaviour
     private int jumpCount = 1;
     private const int maxJump = 1;
     private bool jumped;
+    private bool tread;
     private Transform Character;
-    
+    RaycastHit2D rayHitRight;
+    RaycastHit2D rayHitLeft;
+
     // Start is called before the first frame update
     void Awake()
     {
+        tread = false; 
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -27,7 +31,6 @@ public class PlayerMove : MonoBehaviour
     
    void Update()
    {
-        //Jump
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
             jump();
@@ -52,6 +55,12 @@ public class PlayerMove : MonoBehaviour
         //Move by Key Control
         float hor = Input.GetAxisRaw("Horizontal");
         move(hor);
+
+        Debug.DrawRay(transform.position + Vector3.right * 0.3f, Vector3.down, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + Vector3.left * 0.3f, Vector3.down, new Color(0, 1, 0));
+        rayHitRight = Physics2D.Raycast(transform.position + Vector3.right * 0.3f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        rayHitLeft = Physics2D.Raycast(transform.position + Vector3.left * 0.3f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        tread = (rayHitRight.collider || rayHitLeft.collider);
 
         //Landing Platform
         if (rigid.velocity.y < 0)
@@ -127,10 +136,18 @@ public class PlayerMove : MonoBehaviour
 
 
     void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy")//collide with monster
+    {        
+        if (collision.gameObject.tag == "Enemy")//collide with monster
         {
-            onDamaged(collision.transform.position);
+            if(tread == false)
+            {
+                onDamaged(collision.transform.position);
+            }
+            else
+            {
+                EnemyMove e = collision.gameObject.GetComponent<EnemyMove>();
+                e.tread(this);
+            }
         }
         if (collision.gameObject.tag == "floor" &&
             this.transform.position.y - collision.transform.position.y > 0)//collide with floor
@@ -138,14 +155,17 @@ public class PlayerMove : MonoBehaviour
             InitJumpCount();
             jumped = false;
             anim.SetBool("isJumping", false);
-        }
+        }        
     }
 
     private void OnCollisionExit2D(Collision2D collision)//when fall from floor
     {
-        if (jumpCount >= 1 && !jumped)
+        if(collision.gameObject.tag == "floor")
         {
-            jumpCount--;
+            if (jumpCount >= 1 && !jumped)
+            {
+                jumpCount--;
+            }
         }
     }
 

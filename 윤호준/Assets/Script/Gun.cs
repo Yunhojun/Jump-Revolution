@@ -28,7 +28,6 @@ public class Gun : MonoBehaviour
         count += Time.deltaTime;
         if (count >= 3)
         {
-            Debug.Log("3초");
             count = 0;
         }
     }
