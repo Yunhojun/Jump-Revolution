@@ -12,7 +12,6 @@ public class EnemyMove : MonoBehaviour
 
     protected void Awake()
     {
-        print("awake" + this.ToString());
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,11 +27,10 @@ public class EnemyMove : MonoBehaviour
     }
 
     //재귀 함수
-    protected void Think()
+    private void Think()
     {
         //set Next Active
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
-        print(nextMove);
 
         //Sprite Animation
         anim.SetInteger("WalkSpeed", nextMove);
