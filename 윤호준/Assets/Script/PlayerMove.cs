@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
     private float jumpPower = 20f;
-    Rigidbody2D rigid;
+    private Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
     private bool isLadder;
@@ -15,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     private const int maxJump = 1;
     private bool jumped;
     private bool tread;
+    private bool stuned;
     private Transform Character;
     RaycastHit2D rayHitRight;
     RaycastHit2D rayHitLeft;
@@ -22,7 +24,8 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        tread = false; 
+        tread = false;
+        stuned = false;
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
@@ -56,10 +59,10 @@ public class PlayerMove : MonoBehaviour
         float hor = Input.GetAxisRaw("Horizontal");
         move(hor);
 
-        Debug.DrawRay(transform.position + Vector3.right * 0.3f, Vector3.down, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + Vector3.left * 0.3f, Vector3.down, new Color(0, 1, 0));
-        rayHitRight = Physics2D.Raycast(transform.position + Vector3.right * 0.3f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
-        rayHitLeft = Physics2D.Raycast(transform.position + Vector3.left * 0.3f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        Debug.DrawRay(transform.position + Vector3.right * 0.3f + Vector3.down * 0.4f, Vector3.down, new Color(0, 1, 0));
+        Debug.DrawRay(transform.position + Vector3.left * 0.3f + Vector3.down * 0.4f, Vector3.down, new Color(0, 1, 0));
+        rayHitRight = Physics2D.Raycast(transform.position + Vector3.right * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        rayHitLeft = Physics2D.Raycast(transform.position + Vector3.left * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
         tread = (rayHitRight.collider || rayHitLeft.collider);
 
         //Landing Platform
@@ -94,8 +97,11 @@ public class PlayerMove : MonoBehaviour
 
     public void move(float hor)
     {
-        Vector3 velocity = new Vector3(hor, 0, 0).normalized * Time.deltaTime * moveSpeed;
-        transform.Translate(velocity);
+        if (!stuned)
+        {
+            Vector3 velocity = new Vector3(hor, 0, 0).normalized * Time.deltaTime * moveSpeed;
+            transform.Translate(velocity);
+        }
         if (hor == 0)
         {
             anim.SetBool("isWalking", false);            
@@ -126,14 +132,13 @@ public class PlayerMove : MonoBehaviour
         Character.transform.Translate(new Vector3(0, 0.25f, 0));
         Debug.Log("stand");
     }
+
     public void sit()
     {
         Character.transform.localScale = new Vector3(1, 0.5f, 0);
         Character.transform.Translate(new Vector3(0, -0.25f, 0));
         Debug.Log("sit");
     }
-
-
 
     void OnCollisionEnter2D(Collision2D collision)
     {        
@@ -149,10 +154,12 @@ public class PlayerMove : MonoBehaviour
                 e.tread(this);
             }
         }
+
         if (collision.gameObject.tag == "floor" &&
             this.transform.position.y - collision.transform.position.y > 0)//collide with floor
         {
             InitJumpCount();
+            stuned = false;
             jumped = false;
             anim.SetBool("isJumping", false);
         }        
@@ -169,7 +176,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void onDamaged(Vector2 targetPos)
+    public void onDamaged(Vector2 targetPos)
     {
         gameObject.layer = 11;
 
@@ -204,5 +211,25 @@ public class PlayerMove : MonoBehaviour
         {
             isLadder = false;
         }
+    }
+
+    public Rigidbody2D GetRig()
+    {
+        return rigid;
+    }
+
+    public void stun()
+    {
+        stuned = true;
+    }
+
+    public void SetMoveSpeed(float f)
+    {
+        moveSpeed = f;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
     }
 }

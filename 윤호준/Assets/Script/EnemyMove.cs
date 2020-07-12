@@ -5,17 +5,20 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     protected Rigidbody2D rigid;
-    public int nextMove;
+    [SerializeField]
+    protected int nextMove;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
-    protected Vector2 spawnPoint;
+    protected Vector3 spawnPoint;
+    protected bool destroyed;
 
     protected void Awake()
     {
+        destroyed = false;
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spawnPoint = rigid.position;
+        spawnPoint = transform.position;
 
     }
 
@@ -23,13 +26,32 @@ public class EnemyMove : MonoBehaviour
     protected void FixedUpdate()
     {
         //move
-        move();
+        if (!destroyed)
+        {
+            move();
+        }
+    }
+    
+    protected void Respwan()
+    {
+        transform.position = spawnPoint;
+        rigid.gravityScale = 1;
+        destroyed = false;
+        GetComponent<Collider2D>().enabled = true;
+    }
+
+    protected void Destroy()
+    {
+        transform.position = transform.position + Vector3.back * 100;
+        GetComponent<Collider2D>().enabled = false;
+        rigid.gravityScale = 0;
+        destroyed = true;
+        Invoke("Respwan", 3f);
     }
 
     //재귀 함수
     private void Think()
     {
-        Debug.Log("Think start");
         //set Next Active
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
 
@@ -68,5 +90,6 @@ public class EnemyMove : MonoBehaviour
     public virtual void tread(PlayerMove p)
     {
         p.jump();
+        Destroy();
     }
 }
