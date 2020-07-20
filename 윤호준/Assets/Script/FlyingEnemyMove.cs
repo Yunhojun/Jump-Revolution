@@ -23,11 +23,6 @@ public class FlyingEnemyMove : EnemyMove
 
     }
 
-    protected override void Think()
-    {
-        
-    }
-
     protected override void move()
     {
         rigid.velocity = new Vector2(nextMoveX * 3, nextMoveY * 2);

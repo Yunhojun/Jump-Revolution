@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     protected Rigidbody2D rigid;
+    [SerializeField]
     protected int nextMove;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
@@ -18,7 +19,7 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
-        Think();
+
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     //재귀 함수
-    protected virtual void Think()
+    private void Think()
     {
         //set Next Active
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
