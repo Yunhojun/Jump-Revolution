@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd918cd092646804a9daa1c4823c68df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   jumpPower: 20
 --- !u!95 &9194604960322756145
 Animator:
@@ -513,7 +512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9194604962063898235}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.350396, y: -3.5924194, z: -33.896484}
+  m_LocalPosition: {x: -12.350396, y: -3.592419, z: -13.896484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9194604961604411598}
