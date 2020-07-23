@@ -10901,22 +10901,12 @@ PrefabInstance:
     - target: {fileID: 1173689359060661128, guid: dd8f93f870973514c827e585b6356473,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1173689359060661140, guid: dd8f93f870973514c827e585b6356473,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1173689359060661140, guid: dd8f93f870973514c827e585b6356473,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 1173689359060661140, guid: dd8f93f870973514c827e585b6356473,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 1173689359060661142, guid: dd8f93f870973514c827e585b6356473,
         type: 3}
