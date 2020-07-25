@@ -54,6 +54,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate() //이동 관련
     {
         move(hor); //이동
+        //print(rigid.velocity);
         
         enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
         enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
@@ -72,11 +73,11 @@ public class PlayerMove : MonoBehaviour
         if (!stuned)
         {
             Vector3 velocity = new Vector3(hor, 0, 0).normalized * Time.deltaTime * moveSpeed;
-            transform.Translate(velocity);
+            transform.Translate(velocity);         
         }
         if (hor == 0)
         {
-            anim.SetBool("isWalking", false);            
+            anim.SetBool("isWalking", false);
         }
         else
         {
@@ -87,7 +88,6 @@ public class PlayerMove : MonoBehaviour
 
     public void jump()//점프
     {
-        print("jump");
         rigid.Sleep();
         rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         anim.SetBool("isJumping", true);
@@ -207,5 +207,10 @@ public class PlayerMove : MonoBehaviour
     public float GetMoveSpeed()
     {
         return moveSpeed;
+    }
+
+    public float GetHorizon()
+    {
+        return hor;
     }
 }
