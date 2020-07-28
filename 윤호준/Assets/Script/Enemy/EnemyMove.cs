@@ -50,7 +50,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     //재귀 함수
-    private void Think()
+    protected virtual void Think()
     {
         //set Next Active
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
