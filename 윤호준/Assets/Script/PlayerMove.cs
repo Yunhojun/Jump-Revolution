@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private float moveSpeed = 5f;
-    [SerializeField]
     public float jumpPower = 20f;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9194604960322756157}
   - component: {fileID: 9194604960322756156}
   - component: {fileID: 9194604960322756159}
-  - component: {fileID: 9194604960322756158}
   - component: {fileID: 9194604960322756145}
+  - component: {fileID: 2170980821495169372}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -138,21 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9194604960322756158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 620002664398715481, guid: f30e9c5c02edd914e8b67414fafa3af6,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194604960322756144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd918cd092646804a9daa1c4823c68df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpPower: 20
 --- !u!95 &9194604960322756145
 Animator:
   serializedVersion: 3
@@ -173,6 +158,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2170980821495169372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9194604960322756144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203d4f8c1254ef34c9c52b1ad11ec648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPower: 20
+  jumpCount: 1
+  dashCount: 0
 --- !u!1 &9194604960791428187
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9194604962063898235}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.350396, y: -3.5924194, z: -33.896484}
+  m_LocalPosition: {x: -27.099998, y: 7.69, z: -33.896484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9194604961604411598}

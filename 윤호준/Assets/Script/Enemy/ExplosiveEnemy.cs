@@ -11,7 +11,8 @@ public class ExplosiveEnemy : EnemyMove
     {
         base.move();
     }
-
+}
+/*
     public override void tread(PlayerMove p)
     {
         Rigidbody2D playerRigid = p.GetRig();
@@ -22,3 +23,4 @@ public class ExplosiveEnemy : EnemyMove
         Destroy();
     }
 }
+*/
