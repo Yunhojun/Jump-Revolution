@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     Animator anim;
     private bool isLadder; //사다리에 있는지 여부
     public int jumpCount = 1; //점프 횟수
-    public int dashCount = 0;  // 대쉬 횟수
+    private int dashCount = 0;  // 대쉬 횟수
     private const int maxJump = 1; //최대 점프 횟수, 2단 점프를 가능하게 하려면 2로 수정
     private bool dashed;
     private bool tread;  // 밟기 가능한 상태 인지 여부
@@ -53,28 +53,18 @@ public class PlayerMove : MonoBehaviour
         ver = Input.GetAxisRaw("Vertical");
 
         // Dash Code
-        if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow) && dashCount > 0)
+        if (Input.GetKey(KeyCode.X) && dashCount > 0)
         {
-            dashLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow) && dashCount > 0)
-        {
-            dashRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow) && dashCount > 0)
-        {
-            dashUp();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow) && dashCount > 0)
-        {
-            dashDown();
+            if(hor != 0)
+            {
+                dashHor();
+            }
+            else if(ver != 0)
+            {
+                dashVer();
+            }
         }
 
-        ////Direction Sprite
-        //if (Input.GetButton("Horizontal"))
-        //{
-        //    spriteRenderer.flipX = (Input.GetAxisRaw("Horizontal") == -1);
-        //}
 
         // 앉기 버튼
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -102,31 +92,6 @@ public class PlayerMove : MonoBehaviour
             Vector3 velocity = Vector2.up * ver * moveSpeed * Time.deltaTime;
             transform.Translate(velocity);
         }
-    }
-    public void dashUp()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (0, 4));
-        dashCount--;
-    }
-
-    public void dashLeft()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (-4, 0));
-        dashCount--;
-    }
-    public void dashRight()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (4, 0));
-        dashCount--;
-    }
-    public void dashDown()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (0, -4));
-        dashCount--;
     }
 
     public void move(float hor)//좌우 이동
@@ -172,8 +137,34 @@ public class PlayerMove : MonoBehaviour
         transform.Translate(new Vector3(0, -0.25f, 0));
         Debug.Log("sit");
     }
+    
+    public void dashVer()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2(0, 4 * ver));
+        dashCount--;
+    }
 
+    public void dashHor()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2(4 * hor, 0));
+        dashCount--;
+    }
 
+    public void stun()
+    {
+        StartCoroutine(stunCoroutine());
+    }
+
+    private IEnumerator stunCoroutine()
+    {
+        stuned = true;
+
+        yield return new WaitForSeconds(2);
+
+        stuned = false;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -194,7 +185,6 @@ public class PlayerMove : MonoBehaviour
             if (collision.relativeVelocity.y >= 0f)//바닥에 착지
             {
                 InitJumpCount();
-                stuned = false;
                 anim.SetBool("isJumping", false);
             }
         }
@@ -256,11 +246,6 @@ public class PlayerMove : MonoBehaviour
         return rigid;
     }
 
-    public void stun()
-    {
-        stuned = true;
-    }
-
     public void SetMoveSpeed(float f)
     {
         moveSpeed = f;
@@ -269,6 +254,26 @@ public class PlayerMove : MonoBehaviour
     public float GetMoveSpeed()
     {
         return moveSpeed;
+    }
+
+    public void SetJumpCount(int i)
+    {
+        jumpCount = i;
+    }
+
+    public int GetJumpCount()
+    {
+        return jumpCount;
+    }
+
+    public void SetDashCount(int i)
+    {
+        dashCount = i;
+    }
+
+    public int GetDashCount()
+    {
+        return dashCount;
     }
 
     public float GetHorizon()

@@ -6,6 +6,6 @@ public class DashEnemyMove : EnemyMove
 {
     public override void tread(PlayerMove p){
        p.jump();
-       p.dashCount = 1;
+       p.SetDashCount(1);
    }
 }
