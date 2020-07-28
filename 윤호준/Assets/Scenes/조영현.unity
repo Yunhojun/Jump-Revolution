@@ -4393,11 +4393,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1135295973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd918cd092646804a9daa1c4823c68df, type: 3}
+  m_Script: {fileID: 11500000, guid: 203d4f8c1254ef34c9c52b1ad11ec648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpPower: 21
+  jumpPower: 20
+  jumpCount: 1
+  dashCount: 0
 --- !u!50 &1135295976
 Rigidbody2D:
   serializedVersion: 4
