@@ -1,28 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    Rigidbody2D rigid;
-    Vector2 spawnPoint;
+    protected Rigidbody2D rigid;
+    public bool collisionOn;
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spawnPoint = rigid.position;
+        collisionOn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (rigid.velocity == Vector2.zero)
+    }
+
+    public void DestroyBullet()
+    {
+        transform.position = transform.position + Vector3.back * 100;
+        GetComponent<Collider2D>().enabled = false;
+    }
+
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
         {
-            if (rigid.velocity == Vector2.zero)
-            {
-                rigid.position = spawnPoint;
-            }
+            collision.gameObject.GetComponent<PlayerMove>().onDamaged(transform.position);
+            DestroyBullet();
+            collisionOn = false;
         }
     }
+
+    
 }

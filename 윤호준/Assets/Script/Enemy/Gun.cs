@@ -3,32 +3,73 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+public class Gun : EnemyMove
 {
-    Rigidbody2D rigid;
+    Rigidbody2D rigidGun;
     public Rigidbody2D objRigid;
     Rigidbody2D objIns;
-    public float count = 0;
+    public float distance;
+    PlayerMove p = null;
+    //public float count = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        rigidGun = GetComponent<Rigidbody2D>();
         objIns = Instantiate<Rigidbody2D>(objRigid, transform.position - new Vector3(1, 0), Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 
-    private void FixedUpdate()
+    new private void FixedUpdate()
     {
-        objIns.velocity = new Vector2(-5, 0);
-        count += Time.deltaTime;
-        if (count >= 3)
+        if (objIns.GetComponent<bullet>().collisionOn == true)
         {
-            count = 0;
+            objIns.velocity = new Vector2(-5, 0);
+            if (Mathf.Abs((spawnPoint.x - objIns.position.x)) > distance)
+            {
+                if (this.destroyed == false)
+                    objIns.position = spawnPoint;
+                else
+                {
+                    objIns.velocity = Vector2.zero;
+                    objIns.GetComponent<bullet>().DestroyBullet();
+                }
+            }
         }
+        else
+        {
+            objIns.velocity = Vector2.zero;
+            objIns.position = spawnPoint;
+            if (destroyed == false)
+            {
+                Invoke("RespawnBullet", 3f);
+                objIns.GetComponent<bullet>().collisionOn = true;
+            }
+        }
+
+    }
+
+    public void RespawnBullet()
+    {
+        //objIns.position = this.spawnPoint;
+        objIns.GetComponent<Transform>().position = this.spawnPoint;
+        objIns.GetComponent<Collider2D>().enabled = true;
+
+    }
+
+    public override void tread(PlayerMove p)
+    {
+        base.tread(p);
+        this.p = p;
+        CancelInvoke("RespawnBullet");
+        Invoke("RespawnBullet", 3.5f);
+
+
+
     }
 }
