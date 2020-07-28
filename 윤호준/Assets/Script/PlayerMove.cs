@@ -6,14 +6,16 @@ public class PlayerMove : MonoBehaviour
 {
     private float moveSpeed = 5f;
     [SerializeField]
-    private float jumpPower = 20f;
+    public float jumpPower = 20f;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
     private bool isLadder;
-    private int jumpCount = 1;
+    public int jumpCount = 1;
+    public int dashCount = 0;
     private const int maxJump = 1;
     private bool jumped;
+    private bool dashed;
     private bool tread;
     private Transform Character;
     RaycastHit2D rayHitRight;
@@ -34,6 +36,22 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
             jump();
+        }
+        if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow) && dashCount > 0)
+        {
+            dashLeft();
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow) && dashCount > 0)
+        {
+            dashRight();
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow) && dashCount > 0)
+        {
+            dashUp();
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow) && dashCount > 0)
+        {
+            dashDown();
         }
 
         //Direction Sprite
@@ -90,6 +108,31 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.gravityScale = 4f;
         }
+    }
+    public void dashUp()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2 (0, 4));
+        dashCount--;
+    }
+
+    public void dashLeft()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2 (-4, 0));
+        dashCount--;
+    }
+    public void dashRight()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2 (4, 0));
+        dashCount--;
+    }
+    public void dashDown()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2 (0, -4));
+        dashCount--;
     }
 
     public void move(float hor)

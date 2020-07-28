@@ -11,6 +11,8 @@ TagManager:
   - ScaleX
   - ScaleY
   - Head
+  - DashEnemy
+  - DJEnemy
   layers:
   - Default
   - TransparentFX
