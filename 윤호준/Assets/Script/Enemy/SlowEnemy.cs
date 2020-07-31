@@ -17,7 +17,7 @@ public class SlowEnemy : EnemyMove
         float f = 5 * (1 - ((float)slowRate / 100));
         p.SetMoveSpeed(f);
         Invoke("Recover", slowTime);
-        
+        Destroy();
     }
 
     private void Recover()
