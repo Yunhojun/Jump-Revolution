@@ -10,7 +10,7 @@ public class BoostEnemy : EnemyMove
     [SerializeField]
     float boostTime = 3f;
 
-    /*public override void tread(PlayerMove p)
+    public override void tread(PlayerMove p)
     {
         base.tread(p);
         this.p = p;
@@ -23,5 +23,5 @@ public class BoostEnemy : EnemyMove
     private void Recover()
     {
         p.SetMoveSpeed(5);
-    }*/
+    }
 }

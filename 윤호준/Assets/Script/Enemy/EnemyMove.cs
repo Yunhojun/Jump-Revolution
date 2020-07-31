@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     protected Rigidbody2D rigid;
+    [SerializeField]
     protected int nextMove;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
@@ -18,7 +19,7 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
-        Think();
+
     }
 
     // Update is called once per frame

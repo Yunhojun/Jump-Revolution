@@ -4,214 +4,204 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private float moveSpeed = 5f;
-    public float jumpPower = 20f;
+    [SerializeField]
+    private float moveSpeed = 5f; //이동속도
+    [SerializeField]
+    public float jumpPower = 21f; //점프력
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
-    private bool isLadder;
-    public int jumpCount = 1;
-    public int dashCount = 0;
-    private const int maxJump = 1;
-    private bool jumped;
+    private bool isLadder; //사다리에 있는지 여부
+    public int jumpCount = 1; //점프 횟수
+    private int dashCount = 0;  // 대쉬 횟수
+    private const int maxJump = 1; //최대 점프 횟수, 2단 점프를 가능하게 하려면 2로 수정
     private bool dashed;
-    private bool tread;
-    private Transform Character;
-    RaycastHit2D rayHitRight;
-    RaycastHit2D rayHitLeft;
+    private bool tread;  // 밟기 가능한 상태 인지 여부
+    private bool stuned; // 이동가능한 상태 인지 여부
+    private Transform Character; // 대쉬 할때 필요한 위치 변수
+    private float hor; //좌우 입력
+    private float ver; //사다리용 상하 입력
+    RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
 
     // Start is called before the first frame update
     void Awake()
     {
-        tread = false; 
+        hor = 0;
+        ver = 0;
+        tread = false;
+        stuned = false;
+        isLadder = false;
+
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         Character = GetComponent<Transform>();
     }
     
-   void Update()
+   void Update() // 키 입력 관련
    {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
+        // Jump Code
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
             jump();
         }
-        if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow) && dashCount > 0)
+
+        // 이동
+        hor = Input.GetAxisRaw("Horizontal"); //좌우이동
+
+        // 사다리 수직이동
+        ver = Input.GetAxisRaw("Vertical");
+
+        // Dash Code
+        if (Input.GetKey(KeyCode.X) && dashCount > 0)
         {
-            dashLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow) && dashCount > 0)
-        {
-            dashRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow) && dashCount > 0)
-        {
-            dashUp();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow) && dashCount > 0)
-        {
-            dashDown();
+            if(hor != 0)
+            {
+                dashHor();
+            }
+            else if(ver != 0)
+            {
+                dashVer();
+            }
         }
 
-        //Direction Sprite
-        if (Input.GetButton("Horizontal"))
-        {
-            spriteRenderer.flipX = (Input.GetAxisRaw("Horizontal") == -1);
-        }
+
+        // 앉기 버튼
         if (Input.GetKeyDown(KeyCode.LeftControl))
             sit();
 
+        // 일어서기 버튼
         if(Input.GetKeyUp(KeyCode.LeftControl))
             stand();
                  
              
    }
 
-    void FixedUpdate()
+    void FixedUpdate() // 이동관련
     {
         //Move by Key Control
-        float hor = Input.GetAxisRaw("Horizontal");
         move(hor);
 
-        Debug.DrawRay(transform.position + Vector3.right * 0.3f, Vector3.down, new Color(0, 1, 0));
-        Debug.DrawRay(transform.position + Vector3.left * 0.3f, Vector3.down, new Color(0, 1, 0));
-        rayHitRight = Physics2D.Raycast(transform.position + Vector3.right * 0.3f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
-        rayHitLeft = Physics2D.Raycast(transform.position + Vector3.left * 0.3f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
-        tread = (rayHitRight.collider || rayHitLeft.collider);
-
-        //Landing Platform
-        if (rigid.velocity.y < 0)
-        {
-            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
-
-            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
-
-            if (rayHit.collider != null)
-            {
-                if (rayHit.distance < 0.5f)
-                {
-                    anim.SetBool("isJumping", false);
-                }
-
-            }
-        }
+        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        tread = (enemyRay[0].collider || enemyRay[1].collider);
 
         //on ladder
         if (isLadder)
         {
-            rigid.gravityScale = 0;
-            float ver = Input.GetAxisRaw("Vertical");
-            rigid.velocity = new Vector2(rigid.velocity.x, ver * moveSpeed);
+            Vector3 velocity = Vector2.up * ver * moveSpeed * Time.deltaTime;
+            transform.Translate(velocity);
         }
-        else
+    }
+
+    public void move(float hor)//좌우 이동
+    {
+        if (!stuned)
         {
-            rigid.gravityScale = 4f;
+            Vector3 velocity = new Vector3(hor, 0, 0).normalized * Time.deltaTime * moveSpeed;
+            transform.Translate(velocity);
         }
-    }
-    public void dashUp()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (0, 4));
-        dashCount--;
-    }
-
-    public void dashLeft()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (-4, 0));
-        dashCount--;
-    }
-    public void dashRight()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (4, 0));
-        dashCount--;
-    }
-    public void dashDown()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (0, -4));
-        dashCount--;
-    }
-
-    public void move(float hor)
-    {
-        Vector3 velocity = new Vector3(hor, 0, 0).normalized * Time.deltaTime * moveSpeed;
-        transform.Translate(velocity);
         if (hor == 0)
         {
-            anim.SetBool("isWalking", false);            
+            anim.SetBool("isWalking", false);
         }
         else
         {
+            spriteRenderer.flipX = (hor == -1);
             anim.SetBool("isWalking", true);
         }
     }
 
-    public void jump()
+    public void jump() // 점프
     {
         rigid.Sleep();
         rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         anim.SetBool("isJumping", true);
-        jumped = true;
         jumpCount--;
     }
 
-    public void InitJumpCount()
+    public void InitJumpCount() // 점프 횟수를 초기화
     {
         jumpCount = maxJump;
     }
 
-    public void stand()
+    public void stand() // 일어서기
     {
-        Character.transform.localScale = new Vector3(1, 1, 0);
-        Character.transform.Translate(new Vector3(0, 0.25f, 0));
+        transform.localScale = new Vector3(1, 1, 0);
+        transform.Translate(new Vector3(0, 0.25f, 0));
         Debug.Log("stand");
     }
-    public void sit()
+    public void sit() // 앉기
     {
-        Character.transform.localScale = new Vector3(1, 0.5f, 0);
-        Character.transform.Translate(new Vector3(0, -0.25f, 0));
+        transform.localScale = new Vector3(1, 0.5f, 0);
+        transform.Translate(new Vector3(0, -0.25f, 0));
         Debug.Log("sit");
     }
+    
+    public void dashVer()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2(0, 4 * ver));
+        dashCount--;
+    }
 
+    public void dashHor()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2(4 * hor, 0));
+        dashCount--;
+    }
 
+    public void stun()
+    {
+        StartCoroutine(stunCoroutine());
+    }
+
+    private IEnumerator stunCoroutine()
+    {
+        stuned = true;
+
+        yield return new WaitForSeconds(2);
+
+        stuned = false;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
-    {        
+    {
         if (collision.gameObject.tag == "Enemy")//collide with monster
         {
-            if(tread == false)
+            if (tread == false)//적에게 맞았을 때
             {
                 onDamaged(collision.transform.position);
             }
-            else
+            else//적을 밟았을 때
             {
                 EnemyMove e = collision.gameObject.GetComponent<EnemyMove>();
                 e.tread(this);
             }
         }
-        if (collision.gameObject.tag == "floor" &&
-            this.transform.position.y - collision.transform.position.y > 0)//collide with floor
+        if (collision.gameObject.tag == "floor")//collide with floor
         {
-            InitJumpCount();
-            jumped = false;
-            anim.SetBool("isJumping", false);
-        }        
+            if (collision.relativeVelocity.y >= 0f)//바닥에 착지
+            {
+                InitJumpCount();
+                anim.SetBool("isJumping", false);
+            }
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)//when fall from floor
     {
         if(collision.gameObject.tag == "floor")
         {
-            if (jumpCount >= 1 && !jumped)
+            if (jumpCount >= 1 && !isLadder)
             {
                 jumpCount--;
             }
         }
     }
 
-    void onDamaged(Vector2 targetPos)
+    public void onDamaged(Vector2 targetPos)
     {
         gameObject.layer = 11;
 
@@ -236,6 +226,8 @@ public class PlayerMove : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isLadder = true;
+            rigid.Sleep();
+            rigid.gravityScale = 0;
             InitJumpCount();
         }
     }
@@ -245,6 +237,47 @@ public class PlayerMove : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isLadder = false;
+            rigid.gravityScale = 4f;
         }
+    }
+
+    public Rigidbody2D GetRig()
+    {
+        return rigid;
+    }
+
+    public void SetMoveSpeed(float f)
+    {
+        moveSpeed = f;
+    }
+
+    public float GetMoveSpeed()
+    {
+        return moveSpeed;
+    }
+
+    public void SetJumpCount(int i)
+    {
+        jumpCount = i;
+    }
+
+    public int GetJumpCount()
+    {
+        return jumpCount;
+    }
+
+    public void SetDashCount(int i)
+    {
+        dashCount = i;
+    }
+
+    public int GetDashCount()
+    {
+        return dashCount;
+    }
+
+    public float GetHorizon()
+    {
+        return hor;
     }
 }
