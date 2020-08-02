@@ -16,6 +16,7 @@ public class BoostEnemy : EnemyMove
         this.p = p;
         float f = 5 * (1 + ((float)boostRate / 100));
         p.moveSpeed = f;
+        CancelInvoke("Recover");
         Invoke("Recover", boostTime);
 
     }

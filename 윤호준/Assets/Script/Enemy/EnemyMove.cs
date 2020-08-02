@@ -44,7 +44,7 @@ public class EnemyMove : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         rigid.gravityScale = 0;
         destroyed = true;
-        Invoke("Respwan", 3f);
+        Invoke("Respwan", 5f);
     }
 
     //재귀 함수
