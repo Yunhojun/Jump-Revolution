@@ -7,6 +7,7 @@ public class HighJumpEnemyMove : EnemyMove
     public override void tread(PlayerMove p){
        p.jump();
        p.jumpPower = 40f;
+       Destroy();
    }
 }
 
