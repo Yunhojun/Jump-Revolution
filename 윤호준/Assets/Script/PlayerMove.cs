@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 5f; //이동속도
+    public float moveSpeed { get; set; } = 5f; //이동속도
     [SerializeField]
     public float jumpPower = 21f; //점프력
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid { get; private set; }
     SpriteRenderer spriteRenderer;
     Animator anim;
     private bool isLadder; //사다리에 있는지 여부
-    public int jumpCount = 1; //점프 횟수
-    private int dashCount = 0;  // 대쉬 횟수
+    public int jumpCount { get; set; } = 1; //점프 횟수
+    public int dashCount { get; set; } = 0;  // 대쉬 횟수
     private const int maxJump = 1; //최대 점프 횟수, 2단 점프를 가능하게 하려면 2로 수정
     private bool dashed;
     private bool tread;  // 밟기 가능한 상태 인지 여부
     private bool stuned; // 이동가능한 상태 인지 여부
     private Transform Character; // 대쉬 할때 필요한 위치 변수
-    private float hor; //좌우 입력
+    public float hor { get; private set; } //좌우 입력
     private float ver; //사다리용 상하 입력
     RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
 
@@ -152,16 +151,16 @@ public class PlayerMove : MonoBehaviour
         dashCount--;
     }
 
-    public void stun()
+    public void stun(float t)
     {
-        StartCoroutine(stunCoroutine());
+        StartCoroutine(stunCoroutine(t));
     }
 
-    private IEnumerator stunCoroutine()
+    private IEnumerator stunCoroutine(float t)
     {
         stuned = true;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(t);
 
         stuned = false;
     }
@@ -219,7 +218,7 @@ public class PlayerMove : MonoBehaviour
 
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
-        rigid.Sleep();
+        stun(0.3f);
         int dirc = transform.position.x-targetPos.x > 0 ? 1 :-1;
         rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
 
@@ -252,45 +251,5 @@ public class PlayerMove : MonoBehaviour
             isLadder = false;
             rigid.gravityScale = 4f;
         }
-    }
-
-    public Rigidbody2D GetRig()
-    {
-        return rigid;
-    }
-
-    public void SetMoveSpeed(float f)
-    {
-        moveSpeed = f;
-    }
-
-    public float GetMoveSpeed()
-    {
-        return moveSpeed;
-    }
-
-    public void SetJumpCount(int i)
-    {
-        jumpCount = i;
-    }
-
-    public int GetJumpCount()
-    {
-        return jumpCount;
-    }
-
-    public void SetDashCount(int i)
-    {
-        dashCount = i;
-    }
-
-    public int GetDashCount()
-    {
-        return dashCount;
-    }
-
-    public float GetHorizon()
-    {
-        return hor;
     }
 }

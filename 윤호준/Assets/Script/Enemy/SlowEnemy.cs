@@ -15,13 +15,13 @@ public class SlowEnemy : EnemyMove
         base.tread(p);
         this.p = p;
         float f = 5 * (1 - ((float)slowRate / 100));
-        p.SetMoveSpeed(f);
+        p.moveSpeed = f;
         Invoke("Recover", slowTime);
         Destroy();
     }
 
     private void Recover()
     {
-        p.SetMoveSpeed(5);
+        p.moveSpeed = 5;
     }
 }
