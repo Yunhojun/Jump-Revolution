@@ -190,6 +190,18 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("floor"))
+        {
+            if(rigid.velocity.y == 0)
+            {
+                InitJumpCount();
+                anim.SetBool("isJumping", false);
+            }
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)//when fall from floor
     {
         if(collision.gameObject.tag == "floor")
@@ -207,8 +219,9 @@ public class PlayerMove : MonoBehaviour
 
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
+        rigid.Sleep();
         int dirc = transform.position.x-targetPos.x > 0 ? 1 :-1;
-        rigid.AddForce(new Vector2(dirc, 1)*7, ForceMode2D.Impulse);
+        rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
 
         anim.SetTrigger("deDamaged");
 

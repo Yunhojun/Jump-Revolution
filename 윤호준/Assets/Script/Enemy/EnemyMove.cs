@@ -5,8 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     protected Rigidbody2D rigid;
-    [SerializeField]
-    protected int nextMove;
+    protected int nextMove = -1;
     protected Animator anim;
     protected SpriteRenderer spriteRenderer;
     protected Vector3 spawnPoint;
@@ -19,7 +18,6 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
-
     }
 
     // Update is called once per frame
@@ -59,7 +57,7 @@ public class EnemyMove : MonoBehaviour
         anim.SetInteger("WalkSpeed", nextMove);
 
         // Flip sprite
-        if(nextMove !=0)
+        if (nextMove != 0)
             spriteRenderer.flipX = (nextMove == 1);
 
         //Recusive (보통 코드 맨아래 작성)
@@ -73,11 +71,13 @@ public class EnemyMove : MonoBehaviour
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
         // Platform Check
-        Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.3f, rigid.position.y);
+        Vector2 frontVec = new Vector2(rigid.position.x + nextMove * 0.5f, rigid.position.y);
         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
+        Debug.DrawRay(frontVec, Vector3.right * nextMove, new Color(0, 1, 0));
+        RaycastHit2D rayHitDown = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
+        RaycastHit2D rayHitFront = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f);
 
-        if (rayHit.collider == null)
+        if (rayHitDown.collider == null)
         {
             nextMove *= -1;
             spriteRenderer.flipX = nextMove == 1;
@@ -85,7 +85,18 @@ public class EnemyMove : MonoBehaviour
             CancelInvoke();
             Invoke("Think", 5f);
         }
-    }
+        if(rayHitFront.collider != null && rayHitFront.collider.gameObject != this.gameObject)
+        {
+            if (!rayHitFront.collider.gameObject.CompareTag("Player"))
+            {
+                nextMove *= -1;
+                spriteRenderer.flipX = nextMove == 1;
+
+                CancelInvoke();
+                Invoke("Think", 5f);
+            }
+        }
+    }    
 
     public virtual void tread(PlayerMove p)
     {

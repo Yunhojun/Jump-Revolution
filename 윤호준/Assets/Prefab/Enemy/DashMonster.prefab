@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4963699697778979484}
   - component: {fileID: 794261963827022104}
   - component: {fileID: 5723597871556716890}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: DashMonster
   m_TagString: Enemy
   m_Icon: {fileID: 0}

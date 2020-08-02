@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 997865705892441267}
   - component: {fileID: 4773378056697190199}
   - component: {fileID: 9078279014321990896}
-  m_Layer: 9
-  m_Name: Monster (2)
+  m_Layer: 8
+  m_Name: LowJumpMonster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,3 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e61e8ef7bd608a43800d3fcc64d174a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextMove: 0
