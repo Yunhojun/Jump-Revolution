@@ -238,10 +238,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            isLadder = true;
-            rigid.Sleep();
-            rigid.gravityScale = 0;
-            InitJumpCount();
+            if (!stuned)
+            {
+                isLadder = true;
+                rigid.Sleep();
+                rigid.gravityScale = 0;
+                InitJumpCount();
+            }
         }
     }
 
