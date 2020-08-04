@@ -182,7 +182,7 @@ public class PlayerMove : MonoBehaviour
         }
         if (collision.gameObject.tag == "floor")//collide with floor
         {
-            if (collision.relativeVelocity.y >= 0f)//바닥에 착지
+            if (collision.GetContact(0).normal == Vector2.up && collision.GetContact(1).normal == Vector2.up)//바닥에 착지
             {
                 InitJumpCount();
                 anim.SetBool("isJumping", false);
