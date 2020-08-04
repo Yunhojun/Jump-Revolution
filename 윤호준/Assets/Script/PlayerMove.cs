@@ -129,13 +129,11 @@ public class PlayerMove : MonoBehaviour
     {
         transform.localScale = new Vector3(1, 1, 0);
         transform.Translate(new Vector3(0, 0.25f, 0));
-        Debug.Log("stand");
     }
     public void sit() // 앉기
     {
         transform.localScale = new Vector3(1, 0.5f, 0);
         transform.Translate(new Vector3(0, -0.25f, 0));
-        Debug.Log("sit");
     }
     
     public void dashVer()
@@ -168,7 +166,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")//collide with monster
+        if (collision.gameObject.CompareTag("Enemy"))//collide with monster
         {
             if (tread == false)//적에게 맞았을 때
             {
@@ -180,7 +178,7 @@ public class PlayerMove : MonoBehaviour
                 e.tread(this);
             }
         }
-        if (collision.gameObject.tag == "floor")//collide with floor
+        if (collision.gameObject.CompareTag("floor"))//collide with floor
         {
             if (collision.GetContact(0).normal == Vector2.up && collision.GetContact(1).normal == Vector2.up)//바닥에 착지
             {
@@ -204,7 +202,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)//when fall from floor
     {
-        if(collision.gameObject.tag == "floor")
+        if(collision.gameObject.CompareTag("floor"))
         {
             if (jumpCount >= 1 && !isLadder)
             {

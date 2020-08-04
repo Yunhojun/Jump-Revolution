@@ -21,7 +21,7 @@ public class TeleportBullet : bullet
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Rigidbody2D>().position = spawnPoint + Vector2.up * 3;
             DestroyBullet();

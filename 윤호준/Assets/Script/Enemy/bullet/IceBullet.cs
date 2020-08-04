@@ -15,7 +15,7 @@ public class IceBullet : bullet
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerMove>().stun(2f);
             DestroyBullet();
