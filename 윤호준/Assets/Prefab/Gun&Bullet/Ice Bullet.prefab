@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3206190846188228139}
   - component: {fileID: 4546416267676460237}
   - component: {fileID: 3612650215948566402}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Ice Bullet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -99,9 +99,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.13333334, y: 0.13333334, z: 0.13333334, w: 0.13333334}
+    border: {x: 0.125, y: 0.125, z: 0.125, w: 0.125}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.53333336, y: 0.53333336}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
