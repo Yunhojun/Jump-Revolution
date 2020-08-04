@@ -11,16 +11,15 @@ public class ExplosiveEnemy : EnemyMove
     {
         base.move();
     }
-}
-/*
+
+
     public override void tread(PlayerMove p)
     {
-        Rigidbody2D playerRigid = p.GetRig();
+        Rigidbody2D playerRigid = p.rigid;
         Vector2 dir = playerRigid.position - rigid.position;
         playerRigid.AddForce(dir * force);
-        p.stun();
+        p.stun(2f);
         //폭발 이펙트
         Destroy();
     }
 }
-*/

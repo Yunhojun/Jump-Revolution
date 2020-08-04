@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9194604960322756159}
   - component: {fileID: 9194604960322756145}
   - component: {fileID: 2170980821495169372}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -171,8 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 20
-  jumpCount: 1
-  dashCount: 0
 --- !u!1 &9194604960791428187
 GameObject:
   m_ObjectHideFlags: 0
