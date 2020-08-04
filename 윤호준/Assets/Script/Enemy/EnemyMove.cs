@@ -10,6 +10,7 @@ public class EnemyMove : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Vector3 spawnPoint;
     protected bool destroyed;
+    public bool isFloating;
 
     protected void Awake()
     {
@@ -18,13 +19,18 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
+
+        if (isFloating)
+        {
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 
     // Update is called once per frame
     protected void FixedUpdate()
     {
         //move
-        if (!destroyed)
+        if (!destroyed && !isFloating)
         {
             move();
         }

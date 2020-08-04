@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3316039167716647597}
   - component: {fileID: 3316039167716647586}
   - component: {fileID: 1843815341387458041}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun
-  m_TagString: floor
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
