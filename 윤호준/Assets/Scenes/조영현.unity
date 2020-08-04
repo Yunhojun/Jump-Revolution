@@ -4396,7 +4396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203d4f8c1254ef34c9c52b1ad11ec648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 20
+  jumpPower: 21
   jumpCount: 1
   dashCount: 0
 --- !u!50 &1135295976
@@ -4505,7 +4505,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135295973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.5, y: 65.2, z: 0}
+  m_LocalPosition: {x: 32.3, y: 215.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 582437624}
