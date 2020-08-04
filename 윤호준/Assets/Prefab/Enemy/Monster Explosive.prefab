@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3677664232109972493}
   - component: {fileID: 380685852300254175}
   - component: {fileID: 859708943}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Monster Explosive
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ Animator:
   m_GameObject: {fileID: 3677664232109972482}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5aded66af24833c408ee31e8e594bdd5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2894c3c280dea104cb8887bd346ca28c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a511ef8377665489700a4141cac382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextMove: 0
   force: 1500
 --- !u!70 &859708943
 CapsuleCollider2D:

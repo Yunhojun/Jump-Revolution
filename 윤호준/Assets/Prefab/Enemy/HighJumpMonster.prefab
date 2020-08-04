@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6405485123296721425}
   - component: {fileID: 1658320098339946901}
   - component: {fileID: 2142744705254138244}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: HighJumpMonster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1754995269738613873, guid: 255f7d9f0a2d30c49882c9e1858a87b9,
+  m_Sprite: {fileID: 4740742658319907719, guid: d4f2f936f814df24fb7559370c465cdc,
     type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,7 +117,7 @@ Animator:
   m_GameObject: {fileID: 6405485123296721438}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5aded66af24833c408ee31e8e594bdd5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4dc1cb15d4639114db4668bbbae8484b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -143,7 +143,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.875, y: 0.875}
+    oldSize: {x: 0.8787879, y: 0.8181818}
     newSize: {x: 0.875, y: 0.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -164,4 +164,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618a9517b8d6a17438cba809cd04a588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextMove: 0
