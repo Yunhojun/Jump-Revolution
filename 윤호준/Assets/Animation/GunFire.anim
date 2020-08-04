@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Plant_Attack
+  m_Name: GunFire
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -23,7 +23,7 @@ AnimationClip:
       value: {fileID: 4114111432495891202, guid: f85ccb91ff4f71d44808845949b0798b,
         type: 3}
     - time: 0.083333336
-      value: {fileID: 4114111432495891202, guid: f85ccb91ff4f71d44808845949b0798b,
+      value: {fileID: 1404240895519133374, guid: f85ccb91ff4f71d44808845949b0798b,
         type: 3}
     - time: 0.16666667
       value: {fileID: -878275179285171030, guid: f85ccb91ff4f71d44808845949b0798b,
@@ -63,7 +63,7 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 4114111432495891202, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}
-    - {fileID: 4114111432495891202, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}
+    - {fileID: 1404240895519133374, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}
     - {fileID: -878275179285171030, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}
     - {fileID: -7532476932650681572, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}
     - {fileID: -5444616188093435142, guid: f85ccb91ff4f71d44808845949b0798b, type: 3}

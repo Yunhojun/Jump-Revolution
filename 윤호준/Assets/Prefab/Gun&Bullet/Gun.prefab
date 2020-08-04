@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3316039167716647598}
   - component: {fileID: 3316039167716647597}
   - component: {fileID: 3316039167716647586}
+  - component: {fileID: 554025012934553546}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Enemy
@@ -144,6 +145,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97182c59d7e4d7b4cb06d783017289d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFloating: 0
   objRigid: {fileID: 7628710431043826244, guid: 4f12e8e79b96d614a8a7ad4bdbd1ff60,
     type: 3}
   distance: 0
+--- !u!95 &554025012934553546
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3316039167716647593}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95dd1c664fff810409653f090de85188, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
