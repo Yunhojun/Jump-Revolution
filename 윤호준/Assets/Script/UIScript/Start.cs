@@ -9,7 +9,7 @@ public class Start : MonoBehaviour
 {
     public void GameStart()
     {
-        SceneManager.LoadScene("여지호");
+        SceneManager.LoadScene(GameManager.presentSceneNum);
     }
 
     
