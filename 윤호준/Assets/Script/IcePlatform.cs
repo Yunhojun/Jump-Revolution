@@ -34,12 +34,12 @@ public class IcePlatform : MonoBehaviour
     {
         if (rigid != null)
         {
-            if (hor == 1 || hor == -1)
+            if (hor != 0)
             {
                 temp = hor;
                 time = 0;
             }
-            else if (hor == 0)
+            else
             {
                 time += Time.deltaTime;
                 rigid.velocity = new Vector2(Mathf.Lerp(5 * temp, 0, value * time), rigid.velocity.y);

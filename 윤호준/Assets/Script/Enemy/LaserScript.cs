@@ -6,22 +6,29 @@ public class LaserScript : MonoBehaviour
 {
     [SerializeField]
     float cycle = 2f;
-    float time = 0f;
+    SpriteRenderer sprite = null;
+    BoxCollider2D col = null;
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>();
+        col = GetComponent<BoxCollider2D>();
+        StartCoroutine(LaserCoroutine());
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if(time >= cycle)
+    
+    }
+
+    IEnumerator LaserCoroutine()
+    {
+        while (true)
         {
-            GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
-            GetComponent<BoxCollider2D>().enabled = !GetComponent<BoxCollider2D>().enabled;
-            time = 0;
+            yield return new WaitForSeconds(cycle);
+            sprite.enabled = !sprite.enabled;
+            col.enabled = !col.enabled;
         }
     }
 }

@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 5f; //이동속도
+    public float moveSpeed { get; set; } = 5f; //이동속도
     [SerializeField]
     public float jumpPower = 21f; //점프력
-    Rigidbody2D rigid;
+    public Rigidbody2D rigid { get; private set; }
     SpriteRenderer spriteRenderer;
     Animator anim;
     private bool isLadder; //사다리에 있는지 여부
-    public int jumpCount = 1; //점프 횟수
-    public int dashCount = 0;  // 대쉬 횟수
+    public int jumpCount { get; set; } = 1; //점프 횟수
+    public int dashCount { get; set; } = 0;  // 대쉬 횟수
     private const int maxJump = 1; //최대 점프 횟수, 2단 점프를 가능하게 하려면 2로 수정
     private bool dashed;
     private bool tread;  // 밟기 가능한 상태 인지 여부
     private bool stuned; // 이동가능한 상태 인지 여부
     private Transform Character; // 대쉬 할때 필요한 위치 변수
-    private float hor; //좌우 입력
+    public float hor { get; private set; } //좌우 입력
     private float ver; //사다리용 상하 입력
     RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
 
@@ -53,28 +52,18 @@ public class PlayerMove : MonoBehaviour
         ver = Input.GetAxisRaw("Vertical");
 
         // Dash Code
-        if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.LeftArrow) && dashCount > 0)
+        if (Input.GetKey(KeyCode.X) && dashCount > 0)
         {
-            dashLeft();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.RightArrow) && dashCount > 0)
-        {
-            dashRight();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.UpArrow) && dashCount > 0)
-        {
-            dashUp();
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && Input.GetKey(KeyCode.DownArrow) && dashCount > 0)
-        {
-            dashDown();
+            if(hor != 0)
+            {
+                dashHor();
+            }
+            else if(ver != 0)
+            {
+                dashVer();
+            }
         }
 
-        ////Direction Sprite
-        //if (Input.GetButton("Horizontal"))
-        //{
-        //    spriteRenderer.flipX = (Input.GetAxisRaw("Horizontal") == -1);
-        //}
 
         // 앉기 버튼
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -102,31 +91,6 @@ public class PlayerMove : MonoBehaviour
             Vector3 velocity = Vector2.up * ver * moveSpeed * Time.deltaTime;
             transform.Translate(velocity);
         }
-    }
-    public void dashUp()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (0, 4));
-        dashCount--;
-    }
-
-    public void dashLeft()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (-4, 0));
-        dashCount--;
-    }
-    public void dashRight()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (4, 0));
-        dashCount--;
-    }
-    public void dashDown()
-    {
-        rigid.Sleep();
-        Character.Translate(new Vector2 (0, -4));
-        dashCount--;
     }
 
     public void move(float hor)//좌우 이동
@@ -172,8 +136,34 @@ public class PlayerMove : MonoBehaviour
         transform.Translate(new Vector3(0, -0.25f, 0));
         Debug.Log("sit");
     }
+    
+    public void dashVer()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2(0, 4 * ver));
+        dashCount--;
+    }
 
+    public void dashHor()
+    {
+        rigid.Sleep();
+        Character.Translate(new Vector2(4 * hor, 0));
+        dashCount--;
+    }
 
+    public void stun(float t)
+    {
+        StartCoroutine(stunCoroutine(t));
+    }
+
+    private IEnumerator stunCoroutine(float t)
+    {
+        stuned = true;
+
+        yield return new WaitForSeconds(t);
+
+        stuned = false;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -194,7 +184,18 @@ public class PlayerMove : MonoBehaviour
             if (collision.relativeVelocity.y >= 0f)//바닥에 착지
             {
                 InitJumpCount();
-                stuned = false;
+                anim.SetBool("isJumping", false);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("floor"))
+        {
+            if(rigid.velocity.y == 0)
+            {
+                InitJumpCount();
                 anim.SetBool("isJumping", false);
             }
         }
@@ -217,8 +218,9 @@ public class PlayerMove : MonoBehaviour
 
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
+        stun(0.3f);
         int dirc = transform.position.x-targetPos.x > 0 ? 1 :-1;
-        rigid.AddForce(new Vector2(dirc, 1)*7, ForceMode2D.Impulse);
+        rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
 
         anim.SetTrigger("deDamaged");
 
@@ -249,30 +251,5 @@ public class PlayerMove : MonoBehaviour
             isLadder = false;
             rigid.gravityScale = 4f;
         }
-    }
-
-    public Rigidbody2D GetRig()
-    {
-        return rigid;
-    }
-
-    public void stun()
-    {
-        stuned = true;
-    }
-
-    public void SetMoveSpeed(float f)
-    {
-        moveSpeed = f;
-    }
-
-    public float GetMoveSpeed()
-    {
-        return moveSpeed;
-    }
-
-    public float GetHorizon()
-    {
-        return hor;
     }
 }

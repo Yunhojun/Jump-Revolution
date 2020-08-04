@@ -4,15 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - floor
-  - foot
   - Enemy
   - Ladder
-  - ScaleX
   - ScaleY
-  - Head
-  - DashEnemy
-  - DJEnemy
+  - ScaleX
+  - floor
   layers:
   - Default
   - TransparentFX
@@ -22,12 +18,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
   - Enemy
+  - Platform
   - Player
   - DamagedPlayer
-  - Platform
-  - Scale
+  - 
+  - 
   - 
   - 
   - 

@@ -8,20 +8,21 @@ public class SlowEnemy : EnemyMove
     private int slowRate = 50;
     PlayerMove p = null;
     [SerializeField]
-    float slowTime = 3f;
+    float slowTime = 2f;
 
     public override void tread(PlayerMove p)
     {
         base.tread(p);
         this.p = p;
         float f = 5 * (1 - ((float)slowRate / 100));
-        p.SetMoveSpeed(f);
+        p.moveSpeed = f;
+        CancelInvoke("Recover");
         Invoke("Recover", slowTime);
-        
+        Destroy();
     }
 
     private void Recover()
     {
-        p.SetMoveSpeed(5);
+        p.moveSpeed = 5;
     }
 }
