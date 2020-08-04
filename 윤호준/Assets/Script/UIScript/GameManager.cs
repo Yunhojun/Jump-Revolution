@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.PlayerLoop;
+using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     public static bool fin = false;
     public static bool isPause = false;
     public GameObject Pause;
+    private string[] scenes = new string[20];
+    
 
     // Start is called before the first frame update
     void Start()
@@ -73,4 +76,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(1);
         fin = false;
     }
+
+    
 }

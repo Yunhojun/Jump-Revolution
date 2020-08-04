@@ -33,7 +33,10 @@ public class Gun : EnemyMove
             if (Mathf.Abs((spawnPoint.x - objIns.position.x)) > distance)
             {
                 if (this.destroyed == false)
-                    objIns.position = spawnPoint;
+                {
+                    objIns.GetComponent<bullet>().DestroyBullet();
+                    StartCoroutine(BulletRespawnTerm(0.5f));
+                }
                 else
                 {
                     objIns.velocity = Vector2.zero;
@@ -47,6 +50,7 @@ public class Gun : EnemyMove
             objIns.position = spawnPoint;
             if (destroyed == false)
             {
+                CancelInvoke("RespawnBullet");
                 Invoke("RespawnBullet", 3f);
                 objIns.GetComponent<bullet>().collisionOn = true;
             }
@@ -59,6 +63,7 @@ public class Gun : EnemyMove
         //objIns.position = this.spawnPoint;
         objIns.GetComponent<Transform>().position = this.spawnPoint;
         objIns.GetComponent<Collider2D>().enabled = true;
+        objIns.GetComponent<bullet>().collisionOn = true;
 
     }
 
@@ -71,5 +76,11 @@ public class Gun : EnemyMove
 
 
 
+    }
+
+    IEnumerator BulletRespawnTerm(float second)
+    {
+        yield return new WaitForSeconds(second);
+        RespawnBullet();
     }
 }

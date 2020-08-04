@@ -25,6 +25,7 @@ public class bullet : MonoBehaviour
     {
         transform.position = transform.position + Vector3.back * 100;
         GetComponent<Collider2D>().enabled = false;
+        collisionOn = false;
     }
 
 
