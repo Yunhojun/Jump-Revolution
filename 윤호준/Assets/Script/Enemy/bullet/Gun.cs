@@ -73,9 +73,6 @@ public class Gun : EnemyMove
         this.p = p;
         CancelInvoke("RespawnBullet");
         Invoke("RespawnBullet", 3.5f);
-
-
-
     }
 
     IEnumerator BulletRespawnTerm(float second)
