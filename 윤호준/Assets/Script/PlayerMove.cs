@@ -114,6 +114,7 @@ public class PlayerMove : MonoBehaviour
     public void jump() // 점프
     {
         rigid.Sleep();
+        SoundScript.Inst.jumpPlayer();
         rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         anim.SetBool("isJumping", true);
         jumpCount--;
