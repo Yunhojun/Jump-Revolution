@@ -35,7 +35,7 @@ public class bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMove>().onDamaged(transform.position);
+            collision.gameObject.GetComponent<PlayerMove>().OnDamaged(transform.position);
             DestroyBullet();
             hit = true;
         }

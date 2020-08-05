@@ -5,7 +5,7 @@ using UnityEngine;
 public class HighJumpEnemyMove : EnemyMove
 {
     public override void tread(PlayerMove p){
-       p.jump();
+       p.Jump();
        p.jumpPower = 40f;
        Destroy();
    }

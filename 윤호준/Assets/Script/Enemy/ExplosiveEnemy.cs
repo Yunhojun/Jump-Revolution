@@ -18,7 +18,7 @@ public class ExplosiveEnemy : EnemyMove
         Rigidbody2D playerRigid = p.rigid;
         Vector2 dir = playerRigid.position - rigid.position;
         playerRigid.AddForce(dir * force);
-        p.stun(2f);
+        p.Stun(2f);
         //폭발 이펙트
         Destroy();
     }

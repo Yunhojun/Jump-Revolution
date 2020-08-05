@@ -82,7 +82,6 @@ public class EnemyMove : MonoBehaviour
         Debug.DrawRay(frontVec, Vector3.right * nextMove, new Color(0, 1, 0));
         RaycastHit2D rayHitDown = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
         RaycastHit2D rayHitFront = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f, LayerMask.GetMask("Platform"));
-        RaycastHit2D rayHitFront2 = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f, LayerMask.GetMask("Enemy"));
 
         if (rayHitDown.collider == null)
         {
@@ -92,7 +91,7 @@ public class EnemyMove : MonoBehaviour
             CancelInvoke();
             Invoke("Think", 5f);
         }
-        if (rayHitFront.collider != null && rayHitFront2.collider != null)
+        if (rayHitFront.collider != null)
         {
             if (!rayHitFront.collider.gameObject.CompareTag("Player"))
             {
@@ -107,7 +106,7 @@ public class EnemyMove : MonoBehaviour
 
     public virtual void tread(PlayerMove p)
     {
-        p.jump();
+        p.Jump();
         Destroy();
     }
 }

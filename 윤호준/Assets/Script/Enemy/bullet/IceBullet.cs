@@ -17,7 +17,7 @@ public class IceBullet : bullet
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerMove>().stun(2f);
+            collision.gameObject.GetComponent<PlayerMove>().Stun(2f);
             DestroyBullet();
             collisionOn = false;
         }
