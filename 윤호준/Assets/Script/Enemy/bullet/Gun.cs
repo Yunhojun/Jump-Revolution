@@ -11,7 +11,6 @@ public class Gun : EnemyMove
     Rigidbody2D objIns;
     public float distance;
     PlayerMove p = null;
-    bool coroutineOn = false;
     //public float count = 0;
 
     // Start is called before the first frame update
