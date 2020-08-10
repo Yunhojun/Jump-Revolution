@@ -11,6 +11,7 @@ public class EnemyMove : MonoBehaviour
     protected Vector3 spawnPoint;
     protected bool destroyed;
     public bool isFloating;
+    protected Collider2D _collider;
 
     protected void Awake()
     {
@@ -19,6 +20,7 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
+        _collider = GetComponent<Collider2D>();
 
         if (isFloating)
         {
@@ -41,13 +43,13 @@ public class EnemyMove : MonoBehaviour
         transform.position = spawnPoint;
         rigid.gravityScale = 1;
         destroyed = false;
-        GetComponent<Collider2D>().enabled = true;
+        _collider.enabled = true;
     }
 
     protected void Destroy()
     {
         transform.position = transform.position + Vector3.back * 100;
-        GetComponent<Collider2D>().enabled = false;
+        _collider.enabled = false;
         rigid.gravityScale = 0;
         destroyed = true;
         Invoke("Respwan", 5f);
@@ -60,7 +62,7 @@ public class EnemyMove : MonoBehaviour
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
 
         //Sprite Animation
-        anim.SetInteger("WalkSpeed", nextMove);
+        //anim.SetInteger("WalkSpeed", nextMove);
 
         // Flip sprite
         if (nextMove != 0)
