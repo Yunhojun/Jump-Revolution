@@ -10,6 +10,7 @@ public class EnemyMove : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Vector3 spawnPoint;
     protected bool destroyed;
+    public bool isFloating;
 
     protected void Awake()
     {
@@ -18,13 +19,18 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
+
+        if (isFloating)
+        {
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 
     // Update is called once per frame
     protected void FixedUpdate()
     {
         //move
-        if (!destroyed)
+        if (!destroyed && !isFloating)
         {
             move();
         }
@@ -75,7 +81,7 @@ public class EnemyMove : MonoBehaviour
         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
         Debug.DrawRay(frontVec, Vector3.right * nextMove, new Color(0, 1, 0));
         RaycastHit2D rayHitDown = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
-        RaycastHit2D rayHitFront = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f);
+        RaycastHit2D rayHitFront = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f, LayerMask.GetMask("Platform"));
 
         if (rayHitDown.collider == null)
         {
@@ -85,7 +91,7 @@ public class EnemyMove : MonoBehaviour
             CancelInvoke();
             Invoke("Think", 5f);
         }
-        if(rayHitFront.collider != null && rayHitFront.collider.gameObject != this.gameObject)
+        if (rayHitFront.collider != null)
         {
             if (!rayHitFront.collider.gameObject.CompareTag("Player"))
             {
@@ -100,7 +106,7 @@ public class EnemyMove : MonoBehaviour
 
     public virtual void tread(PlayerMove p)
     {
-        p.jump();
+        p.Jump();
         Destroy();
     }
 }

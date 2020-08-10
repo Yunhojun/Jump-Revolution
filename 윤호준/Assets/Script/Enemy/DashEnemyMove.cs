@@ -5,7 +5,7 @@ using UnityEngine;
 public class DashEnemyMove : EnemyMove
 {
     public override void tread(PlayerMove p){
-       p.jump();
+       p.Jump();
        p.dashCount = 1;
        Destroy();
    }
