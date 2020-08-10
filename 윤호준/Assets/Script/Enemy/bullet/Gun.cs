@@ -52,6 +52,7 @@ public class Gun : EnemyMove
             {
                 CancelInvoke("RespawnBullet");
                 Invoke("RespawnBullet", 3f);
+                SoundScript.Inst.shotPlayer();
                 objIns.GetComponent<bullet>().collisionOn = true;
             }
         }
