@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 266866781923616014}
   - component: {fileID: 6442669904332393931}
   - component: {fileID: 4839366047064583514}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Monster Slow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ Animator:
   m_GameObject: {fileID: 266866781923616001}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5aded66af24833c408ee31e8e594bdd5, type: 2}
+  m_Controller: {fileID: 9100000, guid: f4402e2de9a66814893c6c764e930f28, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86e9e6e7b17fea4b9f4a43d58421742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFloating: 0
   slowRate: 50
   slowTime: 3
 --- !u!70 &4839366047064583514

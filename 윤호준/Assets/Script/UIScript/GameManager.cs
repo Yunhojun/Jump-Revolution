@@ -14,12 +14,15 @@ public class GameManager : MonoBehaviour
     public static bool fin = false;
     public static bool isPause = false;
     public GameObject Pause;
-    private string[] scenes = new string[20];
+    public static string[] scenes = new string[20];
+    public static int presentSceneNum = 1;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
+        SceneSetting();
         StartCoroutine(CountUp());
     }
 
@@ -66,15 +69,22 @@ public class GameManager : MonoBehaviour
         }
 
 
-        timeText.text = "걸린시간 : " + time;
+        timeText.text = "Time : " + time;
         clearText.enabled = true;
     }
 
     IEnumerator SceneChange() // 씬 전환
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(scenes[presentSceneNum + 1]);
         fin = false;
+    }
+
+    private void SceneSetting()
+    {
+        scenes[0] = "Title";
+        scenes[1] = "여지호";
+        scenes[2] = "윤호준";
     }
 
     

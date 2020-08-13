@@ -9,13 +9,13 @@ public class FlyingEnemyMove : EnemyMove
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "ScaleX")
+        if (collision.CompareTag("ScaleX"))
         {
             nextMoveX *= -1;
             spriteRenderer.flipX = nextMoveX == 1;
         }
 
-        if (collision.tag == "ScaleY")
+        if (collision.CompareTag("ScaleY"))
         {
             nextMoveY *= -1;
         }

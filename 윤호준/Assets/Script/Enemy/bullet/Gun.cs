@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 
 public class Gun : EnemyMove
@@ -10,37 +11,53 @@ public class Gun : EnemyMove
     Rigidbody2D objIns;
     public float distance;
     PlayerMove p = null;
+    bullet bullet = null;
+    Transform bulletTrf = null;
+    Collider2D bulletCol = null;
+    bool fliped = false;
     //public float count = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         rigidGun = GetComponent<Rigidbody2D>();
         objIns = Instantiate<Rigidbody2D>(objRigid, transform.position - new Vector3(1, 0), Quaternion.identity);
+        bullet = objIns.GetComponent<bullet>();
+        bulletTrf = objIns.GetComponent<Transform>();
+        bulletCol = objIns.GetComponent<Collider2D>();
+        fliped = GetComponent<SpriteRenderer>().flipX;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     new private void FixedUpdate()
     {
-        if (objIns.GetComponent<bullet>().collisionOn == true)
+        if (bullet.collisionOn == true)
         {
-            objIns.velocity = new Vector2(-5, 0);
+            if (!fliped)
+            {
+                objIns.velocity = new Vector2(-5, 0);
+            }
+            else
+            {
+                objIns.velocity = new Vector2(5, 0);
+            }
             if (Mathf.Abs((spawnPoint.x - objIns.position.x)) > distance)
             {
                 if (this.destroyed == false)
                 {
-                    objIns.GetComponent<bullet>().DestroyBullet();
-                    StartCoroutine(BulletRespawnTerm(0.5f));
+                    bullet.DestroyBullet();
+                    StartCoroutine(BulletRespawnTerm(0.25f));
                 }
                 else
                 {
                     objIns.velocity = Vector2.zero;
-                    objIns.GetComponent<bullet>().DestroyBullet();
+                    bullet.DestroyBullet();
                 }
             }
         }
@@ -50,20 +67,26 @@ public class Gun : EnemyMove
             objIns.position = spawnPoint;
             if (destroyed == false)
             {
-                CancelInvoke("RespawnBullet");
-                Invoke("RespawnBullet", 3f);
-                objIns.GetComponent<bullet>().collisionOn = true;
+                if (bullet.hit == true)
+                {
+                    StartCoroutine(BulletRespawnLongTerm(3f));
+                    bullet.hit = false;
+                }
+
             }
+
         }
 
     }
 
     public void RespawnBullet()
     {
-        //objIns.position = this.spawnPoint;
-        objIns.GetComponent<Transform>().position = this.spawnPoint;
-        objIns.GetComponent<Collider2D>().enabled = true;
-        objIns.GetComponent<bullet>().collisionOn = true;
+        bulletTrf.position = this.spawnPoint;
+        bulletCol.enabled = true;
+        bullet.collisionOn = true;
+        anim.SetBool("Shot", true);
+
+
 
     }
 
@@ -71,16 +94,21 @@ public class Gun : EnemyMove
     {
         base.tread(p);
         this.p = p;
-        CancelInvoke("RespawnBullet");
-        Invoke("RespawnBullet", 3.5f);
-
-
-
+        StartCoroutine(BulletRespawnLongTerm(5.5f));
     }
 
     IEnumerator BulletRespawnTerm(float second)
     {
+        anim.SetBool("Shot", false);
         yield return new WaitForSeconds(second);
+        RespawnBullet();
+    }
+
+    IEnumerator BulletRespawnLongTerm(float second)
+    {
+        yield return new WaitForSeconds(second);
+        anim.SetBool("Shot", false);
+        yield return new WaitForSeconds(0.25f);
         RespawnBullet();
     }
 }

@@ -21,8 +21,9 @@ public class PlayerMove : MonoBehaviour
     public float hor { get; private set; } //좌우 입력
     private float ver; //사다리용 상하 입력
     RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
-    public GameObject DashEffect;
-    public GameObject StunEffect;
+    private Vector2 savePos;
+    public GameObject SavePoint;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,20 +37,15 @@ public class PlayerMove : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         Character = GetComponent<Transform>();
+        savePos = rigid.position;
     }
-
-    void Dashdelay() {
-        anim.SetBool("isDashing", false);
-
-    }
-
+    
    void Update() // 키 입력 관련
    {
         // Jump Code
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
-            jump();
-           
+            Jump();
         }
 
         // 이동
@@ -61,35 +57,34 @@ public class PlayerMove : MonoBehaviour
         // Dash Code
         if (Input.GetKey(KeyCode.X) && dashCount > 0)
         {
-            anim.SetBool("isDashing", true);
-            if (hor != 0)
+            if(hor != 0)
             {
-                anim.SetBool("isDashing", true);
-                Instantiate(DashEffect, transform.position, transform.rotation);
-                dashHor();
-                //anim.SetBool("isDashing", false);
-
+                DashHor();
             }
             else if(ver != 0)
             {
-                anim.SetBool("isDashing", true);
-                Instantiate(DashEffect, transform.position, transform.rotation);
-                dashVer();
-               // anim.SetBool("isDashing", false);
-
+                DashVer();
             }
-            Invoke("Dashdelay", 0.5f);
- 
+        }
+
+        if (Input.GetKey(KeyCode.F) && jumpCount == maxJump)
+        {
+            Save();
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            Load();
         }
 
 
         // 앉기 버튼
         if (Input.GetKeyDown(KeyCode.LeftControl))
-            sit();
+            Sit();
 
         // 일어서기 버튼
         if(Input.GetKeyUp(KeyCode.LeftControl))
-            stand();
+            Stand();
                  
              
    }
@@ -97,10 +92,10 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate() // 이동관련
     {
         //Move by Key Control
-        move(hor);
+        Move(hor);
 
-        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
-        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
         tread = (enemyRay[0].collider || enemyRay[1].collider);
 
         //on ladder
@@ -111,7 +106,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void move(float hor)//좌우 이동
+    public void Move(float hor)//좌우 이동
     {
         if (!stuned)
         {
@@ -129,7 +124,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void jump() // 점프
+    public void Jump() // 점프
     {
         rigid.Sleep();
         SoundScript.Inst.jumpPlayer();
@@ -143,43 +138,37 @@ public class PlayerMove : MonoBehaviour
         jumpCount = maxJump;
     }
 
-    public void stand() // 일어서기
+    public void Stand() // 일어서기
     {
         transform.localScale = new Vector3(1, 1, 0);
         transform.Translate(new Vector3(0, 0.25f, 0));
-        Debug.Log("stand");
     }
-    public void sit() // 앉기
+    public void Sit() // 앉기
     {
         transform.localScale = new Vector3(1, 0.5f, 0);
         transform.Translate(new Vector3(0, -0.25f, 0));
-        Debug.Log("sit");
     }
     
-    public void dashVer()
+    public void DashVer()
     {
         rigid.Sleep();
         Character.Translate(new Vector2(0, 4 * ver));
         dashCount--;
-       
     }
 
-    public void dashHor()
+    public void DashHor()
     {
         rigid.Sleep();
         Character.Translate(new Vector2(4 * hor, 0));
         dashCount--;
-      
     }
 
-    public void stun(float t)
+    public void Stun(float t)
     {
-        StartCoroutine(stunCoroutine(t));
-        // Instantiate(StunEffect, transform.position, transform.rotation);
-        Instantiate(StunEffect, transform.position, Quaternion.identity);
+        StartCoroutine(StunCoroutine(t));
     }
 
-    private IEnumerator stunCoroutine(float t)
+    private IEnumerator StunCoroutine(float t)
     {
         stuned = true;
 
@@ -190,21 +179,24 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")//collide with monster
+        if (collision.gameObject.CompareTag("Enemy"))//collide with monster
         {
             if (tread == false)//적에게 맞았을 때
             {
-                onDamaged(collision.transform.position);
+                OnDamaged(collision.transform.position);
             }
             else//적을 밟았을 때
             {
                 EnemyMove e = collision.gameObject.GetComponent<EnemyMove>();
-                e.tread(this);
+                if(e != null)
+                {
+                    e.tread(this);
+                }
             }
         }
-        if (collision.gameObject.tag == "floor")//collide with floor
+        if (collision.gameObject.CompareTag("floor"))//collide with floor
         {
-            if (collision.relativeVelocity.y >= 0f)//바닥에 착지
+            if (collision.GetContact(0).normal == Vector2.up && collision.GetContact(1).normal == Vector2.up)//바닥에 착지
             {
                 InitJumpCount();
                 anim.SetBool("isJumping", false);
@@ -226,7 +218,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)//when fall from floor
     {
-        if(collision.gameObject.tag == "floor")
+        if(collision.gameObject.CompareTag("floor"))
         {
             if (jumpCount >= 1 && !isLadder)
             {
@@ -235,13 +227,13 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void onDamaged(Vector2 targetPos)
+    public void OnDamaged(Vector2 targetPos)
     {
         gameObject.layer = 11;
 
         spriteRenderer.color = new Color(1, 1, 1, 0.4f);
 
-        stun(0.3f);
+        Stun(0.3f);
         int dirc = transform.position.x-targetPos.x > 0 ? 1 :-1;
         rigid.AddForce(new Vector2(dirc, 1) * 5, ForceMode2D.Impulse);
 
@@ -250,7 +242,7 @@ public class PlayerMove : MonoBehaviour
         Invoke("OffDamaged", 1.5f);       
     }
 
-    void OffDamaged()
+    public void OffDamaged()
     {
         gameObject.layer = 10;
         spriteRenderer.color = new Color(1, 1, 1, 1);
@@ -260,10 +252,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            isLadder = true;
-            rigid.Sleep();
-            rigid.gravityScale = 0;
-            InitJumpCount();
+            if (!stuned)
+            {
+                isLadder = true;
+                rigid.Sleep();
+                rigid.gravityScale = 0;
+                InitJumpCount();
+            }
         }
     }
 
@@ -274,5 +269,16 @@ public class PlayerMove : MonoBehaviour
             isLadder = false;
             rigid.gravityScale = 4f;
         }
+    }
+
+    public void Save()
+    {
+        savePos = rigid.position;
+        SavePoint.transform.position = savePos + Vector2.up;
+    }
+
+    public void Load()
+    {
+        rigid.position = savePos;
     }
 }

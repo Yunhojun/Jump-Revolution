@@ -10,6 +10,8 @@ public class EnemyMove : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     protected Vector3 spawnPoint;
     protected bool destroyed;
+    public bool isFloating;
+    protected Collider2D _collider;
 
     protected void Awake()
     {
@@ -18,13 +20,19 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spawnPoint = transform.position;
+        _collider = GetComponent<Collider2D>();
+
+        if (isFloating)
+        {
+            rigid.bodyType = RigidbodyType2D.Kinematic;
+        }
     }
 
     // Update is called once per frame
     protected void FixedUpdate()
     {
         //move
-        if (!destroyed)
+        if (!destroyed && !isFloating)
         {
             move();
         }
@@ -35,13 +43,13 @@ public class EnemyMove : MonoBehaviour
         transform.position = spawnPoint;
         rigid.gravityScale = 1;
         destroyed = false;
-        GetComponent<Collider2D>().enabled = true;
+        _collider.enabled = true;
     }
 
     protected void Destroy()
     {
         transform.position = transform.position + Vector3.back * 100;
-        GetComponent<Collider2D>().enabled = false;
+        _collider.enabled = false;
         rigid.gravityScale = 0;
         destroyed = true;
         Invoke("Respwan", 5f);
@@ -54,7 +62,7 @@ public class EnemyMove : MonoBehaviour
         nextMove = Random.Range(-1, 2); // -1은 최소에포함, 1은 최대에 포함이 안되므로 2를 써주어야함 
 
         //Sprite Animation
-        anim.SetInteger("WalkSpeed", nextMove);
+        //anim.SetInteger("WalkSpeed", nextMove);
 
         // Flip sprite
         if (nextMove != 0)
@@ -75,7 +83,7 @@ public class EnemyMove : MonoBehaviour
         Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
         Debug.DrawRay(frontVec, Vector3.right * nextMove, new Color(0, 1, 0));
         RaycastHit2D rayHitDown = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
-        RaycastHit2D rayHitFront = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f);
+        RaycastHit2D rayHitFront = Physics2D.Raycast(frontVec, Vector3.right * nextMove, 0.1f, LayerMask.GetMask("Platform"));
 
         if (rayHitDown.collider == null)
         {
@@ -85,7 +93,7 @@ public class EnemyMove : MonoBehaviour
             CancelInvoke();
             Invoke("Think", 5f);
         }
-        if(rayHitFront.collider != null && rayHitFront.collider.gameObject != this.gameObject)
+        if (rayHitFront.collider != null)
         {
             if (!rayHitFront.collider.gameObject.CompareTag("Player"))
             {
@@ -100,7 +108,7 @@ public class EnemyMove : MonoBehaviour
 
     public virtual void tread(PlayerMove p)
     {
-        p.jump();
+        p.Jump();
         Destroy();
     }
 }
