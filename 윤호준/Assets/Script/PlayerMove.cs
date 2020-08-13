@@ -37,6 +37,7 @@ public class PlayerMove : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         Character = GetComponent<Transform>();
+        savePos = rigid.position;
     }
     
    void Update() // 키 입력 관련
@@ -93,8 +94,8 @@ public class PlayerMove : MonoBehaviour
         //Move by Key Control
         Move(hor);
 
-        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
-        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.3f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
         tread = (enemyRay[0].collider || enemyRay[1].collider);
 
         //on ladder
@@ -187,7 +188,10 @@ public class PlayerMove : MonoBehaviour
             else//적을 밟았을 때
             {
                 EnemyMove e = collision.gameObject.GetComponent<EnemyMove>();
-                e.tread(this);
+                if(e != null)
+                {
+                    e.tread(this);
+                }
             }
         }
         if (collision.gameObject.CompareTag("floor"))//collide with floor
