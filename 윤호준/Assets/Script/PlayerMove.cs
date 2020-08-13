@@ -21,7 +21,8 @@ public class PlayerMove : MonoBehaviour
     public float hor { get; private set; } //좌우 입력
     private float ver; //사다리용 상하 입력
     RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
-
+    public GameObject DashEffect;
+    public GameObject StunEffect;
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,13 +37,19 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         Character = GetComponent<Transform>();
     }
-    
+
+    void Dashdelay() {
+        anim.SetBool("isDashing", false);
+
+    }
+
    void Update() // 키 입력 관련
    {
         // Jump Code
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
             jump();
+           
         }
 
         // 이동
@@ -54,14 +61,25 @@ public class PlayerMove : MonoBehaviour
         // Dash Code
         if (Input.GetKey(KeyCode.X) && dashCount > 0)
         {
-            if(hor != 0)
+            anim.SetBool("isDashing", true);
+            if (hor != 0)
             {
+                anim.SetBool("isDashing", true);
+                Instantiate(DashEffect, transform.position, transform.rotation);
                 dashHor();
+                //anim.SetBool("isDashing", false);
+
             }
             else if(ver != 0)
             {
+                anim.SetBool("isDashing", true);
+                Instantiate(DashEffect, transform.position, transform.rotation);
                 dashVer();
+               // anim.SetBool("isDashing", false);
+
             }
+            Invoke("Dashdelay", 0.5f);
+ 
         }
 
 
@@ -143,6 +161,7 @@ public class PlayerMove : MonoBehaviour
         rigid.Sleep();
         Character.Translate(new Vector2(0, 4 * ver));
         dashCount--;
+       
     }
 
     public void dashHor()
@@ -150,11 +169,14 @@ public class PlayerMove : MonoBehaviour
         rigid.Sleep();
         Character.Translate(new Vector2(4 * hor, 0));
         dashCount--;
+      
     }
 
     public void stun(float t)
     {
         StartCoroutine(stunCoroutine(t));
+        // Instantiate(StunEffect, transform.position, transform.rotation);
+        Instantiate(StunEffect, transform.position, Quaternion.identity);
     }
 
     private IEnumerator stunCoroutine(float t)
