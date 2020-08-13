@@ -171,8 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 20
-  jumpCount: 1
-  dashCount: 0
+  DashEffect: {fileID: 100000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
 --- !u!1 &9194604960791428187
 GameObject:
   m_ObjectHideFlags: 0
