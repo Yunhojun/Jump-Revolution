@@ -9,7 +9,7 @@ public class Start : MonoBehaviour
 {
     public void GameStart()
     {
-        SceneManager.LoadScene(GameManager.presentSceneNum);
+        SceneManager.LoadScene("MapSelectScene");
     }
 
     
