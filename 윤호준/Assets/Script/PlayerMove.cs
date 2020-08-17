@@ -23,6 +23,8 @@ public class PlayerMove : MonoBehaviour
     RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
     private Vector2 savePos;
     public GameObject SavePoint;
+    public GameObject DashEffect;
+    public GameObject StunEffect;
 
     // Start is called before the first frame update
     void Awake()
@@ -151,21 +153,33 @@ public class PlayerMove : MonoBehaviour
     
     public void DashVer()
     {
+        anim.SetBool("isDashing", true);
+        Instantiate(DashEffect, transform.position, transform.rotation);
         rigid.Sleep();
         Character.Translate(new Vector2(0, 4 * ver));
         dashCount--;
+        Invoke("Dashdelay", 0.5f);
     }
 
     public void DashHor()
     {
+        anim.SetBool("isDashing", true);
+        Instantiate(DashEffect, transform.position, transform.rotation);
         rigid.Sleep();
         Character.Translate(new Vector2(4 * hor, 0));
         dashCount--;
+        Invoke("Dashdelay", 0.5f);
+    }
+
+    public void Dashdelay()
+    {
+        anim.SetBool("isDashing", false);
     }
 
     public void Stun(float t)
     {
         StartCoroutine(StunCoroutine(t));
+        Instantiate(StunEffect, transform.position, Quaternion.identity);
     }
 
     private IEnumerator StunCoroutine(float t)
@@ -191,6 +205,9 @@ public class PlayerMove : MonoBehaviour
                 if(e != null)
                 {
                     e.tread(this);
+                }
+                else {
+                    OnDamaged(collision.transform.position);
                 }
             }
         }

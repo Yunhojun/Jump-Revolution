@@ -9,26 +9,27 @@ using UnityEditor.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public Text timeText;
-    public Text clearText;
+    public GameObject clear;
     private int time = 0;
     public static bool fin = false;
     public static bool isPause = false;
     public GameObject Pause;
-    public static string[] scenes = new string[20];
-    public static int presentSceneNum = 1;
+    public static string presentScene;
+    private bool inputNameBool = false;
+    public InputField inputName;
+    public Rank rank;
 
-    
 
     // Start is called before the first frame update
     void Start()
     {
-        SceneSetting();
         StartCoroutine(CountUp());
+        clear.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-        if(fin == true)
+        if(fin == true && inputNameBool == true)
         {
             StartCoroutine(SceneChange());
         }
@@ -38,6 +39,35 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update()
+    {
+        PauseUI();
+    }
+
+    IEnumerator CountUp() // 타임어택 모드
+    {
+        while (!fin)
+        {
+            
+            yield return new WaitForSeconds(1f);
+            time += 1;
+            timeText.text = "Time : " + time;
+        }
+
+
+        timeText.text = "Time : " + time;
+        clear.SetActive(true);
+    }
+
+    IEnumerator SceneChange() // 씬 전환
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("MapSelectScene");
+        fin = false;
+        inputNameBool = false;
+    }
+
+
+    public void PauseUI()
     {
         if (Input.GetButtonDown("Cancel"))
         {
@@ -58,34 +88,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator CountUp() // 타임어택 모드
+    public void Restart()
     {
-        while (!fin)
-        {
-            
-            yield return new WaitForSeconds(1f);
-            time += 1;
-            timeText.text = "Time : " + time;
-        }
-
-
-        timeText.text = "Time : " + time;
-        clearText.enabled = true;
+        SceneManager.LoadScene(presentScene);
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        Pause.SetActive(false);
+        isPause = false;
     }
 
-    IEnumerator SceneChange() // 씬 전환
+    public void Exit()
     {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(scenes[presentSceneNum + 1]);
-        fin = false;
+        SceneManager.LoadScene("MapSelectScene");
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        Pause.SetActive(false);
+        isPause = false;
     }
 
-    private void SceneSetting()
+    public void ContinueButton()
     {
-        scenes[0] = "Title";
-        scenes[1] = "여지호";
-        scenes[2] = "윤호준";
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        Pause.SetActive(false);
+        isPause = false;
     }
 
-    
+    public void Save()
+    {
+        rank.SortAndSave();
+        Debug.Log("세이브 성공");
+        inputNameBool = true;
+    }
+
+    public int GetTime()
+    {
+        return time;
+    }
+
 }
+
