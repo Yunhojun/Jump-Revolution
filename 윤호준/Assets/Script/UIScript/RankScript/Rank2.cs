@@ -1,13 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class StageSelect : MonoBehaviour
+public class Rank2 : Rank
 {
-    public Map map;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +16,8 @@ public class StageSelect : MonoBehaviour
         
     }
 
-    public void SelectMap()
+    public override void mapNumChange()
     {
-        SceneManager.LoadScene(map.GetMapName());
-        GameManager.presentScene = map.GetMapName();
+        mapNum = 2;
     }
-
 }
