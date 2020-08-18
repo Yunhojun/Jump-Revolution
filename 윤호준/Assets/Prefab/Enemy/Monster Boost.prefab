@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac98b549b621e842a6a547b9368dad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFloating: 0
   boostRate: 50
   boostTime: 3
 --- !u!70 &486887936146228157
