@@ -164,3 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e61e8ef7bd608a43800d3fcc64d174a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFloating: 0

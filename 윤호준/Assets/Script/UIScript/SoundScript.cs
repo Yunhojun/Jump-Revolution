@@ -14,7 +14,7 @@ public class SoundScript : MonoBehaviour
 
     public AudioClip shot;
     public AudioClip item;
-    public AudioClip getShoted;
+    public AudioClip explosion;
 
     // Start is called before the first frame update
 
@@ -54,8 +54,8 @@ public class SoundScript : MonoBehaviour
     {
         myaudio.PlayOneShot(item);
     }
-    public void getShotedPlayer()
+    public void explosionPlayer()
     {
-        myaudio.PlayOneShot(getShoted);
+        myaudio.PlayOneShot(explosion);
     }
 }

@@ -23,6 +23,7 @@ public class ExplosiveEnemy : EnemyMove
         playerRigid.AddForce(dir * force);
         p.Stun(1.5f);
         //폭발 이펙트
+        SoundScript.Inst.explosionPlayer();
         Instantiate(explosion, transform.position, transform.rotation);
         Destroy();
     }
