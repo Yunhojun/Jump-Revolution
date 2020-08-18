@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
+        rank.mapNumChange();
         rank.SortAndSave();
         Debug.Log("세이브 성공");
         inputNameBool = true;
