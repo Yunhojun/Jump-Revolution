@@ -13,7 +13,7 @@ public class SoundScript : MonoBehaviour
     public AudioClip jump;                  
 
     public AudioClip shot;
-    public AudioClip item;
+    public AudioClip dash;
     public AudioClip explosion;
 
     // Start is called before the first frame update
@@ -50,9 +50,9 @@ public class SoundScript : MonoBehaviour
     {  
         myaudio.PlayOneShot(shot);
     }
-    public void itemPlayer()
+    public void dashPlayer()
     {
-        myaudio.PlayOneShot(item);
+        myaudio.PlayOneShot(dash);
     }
     public void explosionPlayer()
     {
