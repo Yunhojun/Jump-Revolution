@@ -657,6 +657,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.8799992
       objectReference: {fileID: 0}
+    - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f30e9c5c02edd914e8b67414fafa3af6, type: 3}
 --- !u!1001 &261927879
@@ -2314,7 +2319,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491748958}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -4160,6 +4165,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: ccb8933711ff1814e91bcc4650d6597d, type: 2}
   - m_RefCount: 21
     m_Data: {fileID: 11400000, guid: 5eb45993b323996408a45602bad4675f, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -4979,12 +4986,12 @@ PrefabInstance:
     - target: {fileID: 219351347629794711, guid: 5b6e560b4833b754ba0ba6de12a88d74,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.35
+      value: 24.28
       objectReference: {fileID: 0}
     - target: {fileID: 219351347629794711, guid: 5b6e560b4833b754ba0ba6de12a88d74,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.25
+      value: -2.19
       objectReference: {fileID: 0}
     - target: {fileID: 219351347629794711, guid: 5b6e560b4833b754ba0ba6de12a88d74,
         type: 3}
