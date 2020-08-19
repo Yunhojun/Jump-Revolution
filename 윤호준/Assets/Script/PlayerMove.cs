@@ -158,6 +158,7 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("isDashing", true);
         Instantiate(DashEffect, transform.position, transform.rotation);
         rigid.Sleep();
+        SoundScript.Inst.dashPlayer();
         Character.Translate(new Vector2(0, 4 * ver));
         dashCount--;
         Invoke("Dashdelay", 0.5f);
@@ -168,6 +169,7 @@ public class PlayerMove : MonoBehaviour
         anim.SetBool("isDashing", true);
         Instantiate(DashEffect, transform.position, transform.rotation);
         rigid.Sleep();
+        SoundScript.Inst.dashPlayer();
         Character.Translate(new Vector2(4 * hor, 0));
         dashCount--;
         Invoke("Dashdelay", 0.5f);

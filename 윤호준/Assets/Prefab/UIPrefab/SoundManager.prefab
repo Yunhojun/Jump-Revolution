@@ -124,7 +124,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: ac6f21cf1d8daae478d7602034a1d79b, type: 3}
   shot: {fileID: 8300000, guid: 71e4491ff0d486d43ae94b34425fa1d9, type: 3}
   item: {fileID: 8300000, guid: 51206ffc9b5719b4abac46844663e764, type: 3}
-  getShoted: {fileID: 8300000, guid: b9fe93ca0b15bff47808c2ef6a641dad, type: 3}
+  explosion: {fileID: 8300000, guid: 476c96bf1ab518b4ebbba6f4acfab50e, type: 3}
 --- !u!82 &4220978599093245971
 AudioSource:
   m_ObjectHideFlags: 0
