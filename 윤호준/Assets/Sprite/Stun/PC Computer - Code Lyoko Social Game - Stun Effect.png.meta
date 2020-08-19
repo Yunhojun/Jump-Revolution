@@ -1,0 +1,275 @@
+fileFormatVersion: 2
+guid: f635b943d6ec4184dae0d12c8e7a85d7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8184788088065260012
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_0
+  - first:
+      213: 614431755504742906
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_1
+  - first:
+      213: -1509853157243516476
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_2
+  - first:
+      213: -3827547022245256982
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_3
+  - first:
+      213: -3201259093392206456
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_4
+  - first:
+      213: -7301987362309675641
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_5
+  - first:
+      213: -1731064182579896281
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_6
+  - first:
+      213: -7040288470454050056
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_7
+  - first:
+      213: -926144774160896741
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_8
+  - first:
+      213: -3195444741773430143
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_9
+  - first:
+      213: -8414236659071651018
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_10
+  - first:
+      213: 7223756367096790406
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_11
+  - first:
+      213: -4988158875613263305
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_12
+  - first:
+      213: 8816791768375703442
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_13
+  - first:
+      213: 3364077909065756949
+    second: PC Computer - Code Lyoko Social Game - Stun Effect_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 80
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - Code Lyoko Social Game - Stun Effect_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 11
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4168509499ac96e80800000000000000
+      internalID: -8184788088065260012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Code Lyoko Social Game - Stun Effect_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 11
+        width: 56
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af1749d1d66e68800800000000000000
+      internalID: 614431755504742906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Code Lyoko Social Game - Stun Effect_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 11
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c98f739d8ceb0be0800000000000000
+      internalID: -1509853157243516476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Code Lyoko Social Game - Stun Effect_3
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 11
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae0a7f13342d1eac0800000000000000
+      internalID: -3827547022245256982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Code Lyoko Social Game - Stun Effect_4
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 11
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8855e58c0d7d293d0800000000000000
+      internalID: -3201259093392206456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Code Lyoko Social Game - Stun Effect_5
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 0
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 785e32b7e212aaa90800000000000000
+      internalID: -7301987362309675641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
