@@ -26,6 +26,10 @@ public class PlayerMove : MonoBehaviour
     public GameObject StunEffect;
     public Stun StunCheck;
 
+    // 몬스터 밟았을 때 지속시간 판단
+    public bool highJumpOn = false; //현재 하이점프 중인지 판단
+    public bool lowJumpOn = false; //현재 로우점프 중인지 판단
+
     // Start is called before the first frame update
     void Awake()
     {
