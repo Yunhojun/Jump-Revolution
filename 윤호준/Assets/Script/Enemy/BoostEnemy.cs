@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BoostEnemy : EnemyMove
-{
-    [SerializeField]
-    private int boostRate = 50;
-    PlayerMove p = null;
-    [SerializeField]
-    float boostTime = 3f;
-
+{    
+    private Coroutine co;
     public override void tread(PlayerMove p)
     {
-        base.tread(p);
-        this.p = p;
-        float f = 5 * (1 + ((float)boostRate / 100));
-        p.moveSpeed = f;
-        CancelInvoke("Recover");
-        Invoke("Recover", boostTime);
-
-    }
-
-    private void Recover()
-    {
-        p.moveSpeed = 5;
+        p.Jump();
+        p.moveSpeed = 10f;
+        Destroy();
+        co = p.GetCoroutine();
+        if (p.isNormalSpeed)
+        {
+            p.isNormalSpeed = false;
+            p.SetCoroutine(0);
+            co = p.GetCoroutine();
+        }
+        else
+        {
+            co = p.GetCoroutine();
+            StopCoroutine(co);
+            p.SetCoroutine(0);
+        }
     }
 }
