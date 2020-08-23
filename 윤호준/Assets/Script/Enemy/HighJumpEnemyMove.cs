@@ -5,6 +5,7 @@ using UnityEngine;
 public class HighJumpEnemyMove : EnemyMove
 {
     private static Coroutine co;
+    public float sustainmentTime = 3f;
     public override void tread(PlayerMove p){
         p.Jump();
         p.jumpPower = 40f;
@@ -24,7 +25,7 @@ public class HighJumpEnemyMove : EnemyMove
 
     IEnumerator SustainmentHighJump(PlayerMove p2)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(sustainmentTime);
         p2.jumpPower = 21f;
         p2.highJumpOn = false;
     }

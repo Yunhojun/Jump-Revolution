@@ -9306,6 +9306,9 @@ MonoBehaviour:
   SavePoint: {fileID: 0}
   DashEffect: {fileID: 0}
   StunEffect: {fileID: 0}
+  StunCheck: {fileID: 0}
+  highJumpOn: 0
+  lowJumpOn: 0
 --- !u!50 &1135295976
 Rigidbody2D:
   serializedVersion: 4
@@ -10619,7 +10622,7 @@ PrefabInstance:
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.579998
+      value: 38.58
       objectReference: {fileID: 0}
     - target: {fileID: 9194604961604411585, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
@@ -10629,12 +10632,12 @@ PrefabInstance:
     - target: {fileID: 9194604961604411598, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.720396
+      value: 14.8
       objectReference: {fileID: 0}
     - target: {fileID: 9194604961604411598, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.592419
+      value: -31.2
       objectReference: {fileID: 0}
     - target: {fileID: 9194604961604411598, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
@@ -10689,7 +10692,7 @@ PrefabInstance:
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 38.579998
+      value: 38.58
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f30e9c5c02edd914e8b67414fafa3af6, type: 3}
