@@ -26,6 +26,13 @@ public class PlayerMove : MonoBehaviour
     public GameObject StunEffect;
     public Stun StunCheck;
 
+    // 몬스터 밟았을 때 지속시간 판단
+    public bool highJumpOn = false; //현재 하이점프 중인지 판단
+    public bool lowJumpOn = false; //현재 로우점프 중인지 판단
+    public bool isNormalSpeed { get; set; } = true;
+
+    public Coroutine co = null;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -301,5 +308,38 @@ public class PlayerMove : MonoBehaviour
     public void Load()
     {
         rigid.position = savePos;
+    }
+
+    public Coroutine GetCoroutine()
+    {
+        return co;
+    }
+
+    public void SetCoroutine(int i)
+    {
+        if (i == 0)
+        {
+            co = StartCoroutine(RecoverMoveSpeed());
+        }
+        else
+        {
+            co = StartCoroutine(RecoverJumpPower());
+        }
+    }
+
+    public IEnumerator RecoverMoveSpeed()
+    {
+        yield return new WaitForSeconds(5f);
+
+        isNormalSpeed = true;
+        moveSpeed = 5f;
+    }
+
+    public IEnumerator RecoverJumpPower()
+    {
+        yield return new WaitForSeconds(5f);
+
+        isNormalSpeed = true;
+        jumpPower = 21f;
     }
 }
