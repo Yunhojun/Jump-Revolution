@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class FlyingEnemyMove : EnemyMove
 {
-    protected int nextMoveX = 1;
-    protected int nextMoveY = 1;
+    protected float nextMoveX = 1;
+    protected float nextMoveY = 1;
 
     public float scaleX = 12f;
     public float scaleY = 1f;
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("ScaleX"))
-    //    {
-    //        nextMoveX *= -1;
-    //        spriteRenderer.flipX = nextMoveX == 1;
-    //    }
+    public bool shiftXOn = true;
+    public bool shiftYOn = true;
 
-    //    if (collision.CompareTag("ScaleY"))
-    //    {
-    //        nextMoveY *= -1;
-    //    }
-    //}
 
     protected override void Think()
     {
@@ -39,39 +29,51 @@ public class FlyingEnemyMove : EnemyMove
         {
             spriteRenderer.flipX = nextMoveX == 1;
         }
+
+       
     }
 
     private void Update()
     {
-        if (Mathf.Abs(rigid.position.x - spawnPoint.x) > scaleX)
-        {
-            Debug.Log("x범위 초과");
-            StartCoroutine(VelocityShiftX());
-        }
-
-        if (Mathf.Abs(rigid.position.y - spawnPoint.y) > scaleY)
-        {
-            Debug.Log("y범위 초과");
-            StartCoroutine(VelocityShiftY());
-        }
-
-        else
-        {
-            //rigid.velocity = rigid.velocity.normalized * Velocity.x;
-        }
+        StartCoroutine(VelocityShiftX());
+        StartCoroutine(VelocityShiftY());
+        
     }
 
     IEnumerator VelocityShiftX()
     {
-        //rigid.velocity = new Vector2(rigid.velocity.x * -1, rigid.velocity.y);
-        nextMoveX *= -1;
-        yield return new WaitForSeconds(0.2f);
+        if (Mathf.Abs(rigid.position.x - spawnPoint.x) > scaleX && shiftXOn == true)
+        {
+            Debug.Log("Shiftx");
+            nextMoveX *= -1;
+            shiftXOn = false;
+            yield return new WaitForSeconds(1f);
+            
+        }
+        else
+        {
+            shiftXOn = true;
+            //yield return new WaitForSeconds(0.5f);
+        }
+
+
     }
 
     IEnumerator VelocityShiftY()
     {
-        //rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * -1);
-        nextMoveY *= -1;
-        yield return new WaitForSeconds(0.2f);
+        if (Mathf.Abs(rigid.position.y - spawnPoint.y) > scaleY && shiftYOn == true)
+        {
+            Debug.Log("Shifty");
+            nextMoveY *= -1;
+            shiftYOn = false;
+            yield return new WaitForSeconds(0.5f);
+            
+        }
+        else
+        {
+            shiftYOn = true;
+            //yield return new WaitForSeconds(0.5f);
+        }
+
     }
 }
