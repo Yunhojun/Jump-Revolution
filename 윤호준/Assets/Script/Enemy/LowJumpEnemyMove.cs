@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class LowJumpEnemyMove : EnemyMove
 {
-    public float second = 5f;
-    float jumpPower = 10f;
+    private static Coroutine co;
+    public float sustainmentTime = 3f;
     public override void tread(PlayerMove p){
-       p.Jump();
-       p.jumpPower = jumpPower;
-       Destroy();
+        p.Jump();
+        p.jumpPower = 10f;
+        Destroy();
+        if (p.lowJumpOn == false)
+        {
+            p.lowJumpOn = true;
+            co = StartCoroutine(SustainmentLowJump(p));
+        }
+        else
+        {
+            StopCoroutine(co);
+            co = StartCoroutine(SustainmentLowJump(p));
+        }
+
     }
 
-    
+    IEnumerator SustainmentLowJump(PlayerMove p2)
+    {
+        yield return new WaitForSeconds(sustainmentTime);
+        p2.jumpPower = 21f;
+        p2.lowJumpOn = false;
+    }
+
 
 }

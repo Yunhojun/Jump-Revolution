@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed { get; set; } = 5f; //이동속도
-    [SerializeField]
     public float jumpPower = 21f; //점프력
     public Rigidbody2D rigid { get; private set; }
     SpriteRenderer spriteRenderer;
@@ -16,7 +15,7 @@ public class PlayerMove : MonoBehaviour
     private const int maxJump = 1; //최대 점프 횟수, 2단 점프를 가능하게 하려면 2로 수정
     private bool dashed;
     private bool tread;  // 밟기 가능한 상태 인지 여부
-    private bool stuned; // 이동가능한 상태 인지 여부
+    private bool stuned { get; set; } // 이동가능한 상태 인지 여부
     private Transform Character; // 대쉬 할때 필요한 위치 변수
     public float hor { get; private set; } //좌우 입력
     private float ver; //사다리용 상하 입력
@@ -25,6 +24,14 @@ public class PlayerMove : MonoBehaviour
     public GameObject SavePoint;
     public GameObject DashEffect;
     public GameObject StunEffect;
+    public Stun StunCheck;
+
+    // 몬스터 밟았을 때 지속시간 판단
+    public bool highJumpOn = false; //현재 하이점프 중인지 판단
+    public bool lowJumpOn = false; //현재 로우점프 중인지 판단
+    public bool isNormalSpeed { get; set; } = true;
+
+    public Coroutine co = null;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +41,8 @@ public class PlayerMove : MonoBehaviour
         tread = false;
         stuned = false;
         isLadder = false;
+        StunCheck = GetComponentInChildren<Stun>();
+
 
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -187,10 +196,10 @@ public class PlayerMove : MonoBehaviour
     private IEnumerator StunCoroutine(float t)
     {
         stuned = true;
-
+        StunCheck.StunOn();
         yield return new WaitForSeconds(t);
-
         stuned = false;
+        StunCheck.StunOff();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -299,5 +308,38 @@ public class PlayerMove : MonoBehaviour
     public void Load()
     {
         rigid.position = savePos;
+    }
+
+    public Coroutine GetCoroutine()
+    {
+        return co;
+    }
+
+    public void SetCoroutine(int i)
+    {
+        if (i == 0)
+        {
+            co = StartCoroutine(RecoverMoveSpeed());
+        }
+        else
+        {
+            co = StartCoroutine(RecoverJumpPower());
+        }
+    }
+
+    public IEnumerator RecoverMoveSpeed()
+    {
+        yield return new WaitForSeconds(5f);
+
+        isNormalSpeed = true;
+        moveSpeed = 5f;
+    }
+
+    public IEnumerator RecoverJumpPower()
+    {
+        yield return new WaitForSeconds(5f);
+
+        isNormalSpeed = true;
+        jumpPower = 21f;
     }
 }

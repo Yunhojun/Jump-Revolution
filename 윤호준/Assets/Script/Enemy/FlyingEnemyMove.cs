@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class FlyingEnemyMove : EnemyMove
 {
-    protected int nextMoveX = 1;
-    protected int nextMoveY = 1;
+    protected float nextMoveX = 1;
+    protected float nextMoveY = 1;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("ScaleX"))
-        {
-            nextMoveX *= -1;
-            spriteRenderer.flipX = nextMoveX == 1;
-        }
+    public float scaleX = 12f;
+    public float scaleY = 1f;
 
-        if (collision.CompareTag("ScaleY"))
-        {
-            nextMoveY *= -1;
-        }
+    public bool shiftXOn = true;
+    public bool shiftYOn = true;
 
-
-    }
 
     protected override void Think()
     {
         
     }
+
 
     protected override void move()
     {
@@ -37,5 +29,51 @@ public class FlyingEnemyMove : EnemyMove
         {
             spriteRenderer.flipX = nextMoveX == 1;
         }
+
+       
+    }
+
+    private void Update()
+    {
+        StartCoroutine(VelocityShiftX());
+        StartCoroutine(VelocityShiftY());
+        
+    }
+
+    IEnumerator VelocityShiftX()
+    {
+        if (Mathf.Abs(rigid.position.x - spawnPoint.x) > scaleX && shiftXOn == true)
+        {
+            Debug.Log("Shiftx");
+            nextMoveX *= -1;
+            shiftXOn = false;
+            yield return new WaitForSeconds(1f);
+            
+        }
+        else
+        {
+            shiftXOn = true;
+            //yield return new WaitForSeconds(0.5f);
+        }
+
+
+    }
+
+    IEnumerator VelocityShiftY()
+    {
+        if (Mathf.Abs(rigid.position.y - spawnPoint.y) > scaleY && shiftYOn == true)
+        {
+            Debug.Log("Shifty");
+            nextMoveY *= -1;
+            shiftYOn = false;
+            yield return new WaitForSeconds(0.5f);
+            
+        }
+        else
+        {
+            shiftYOn = true;
+            //yield return new WaitForSeconds(0.5f);
+        }
+
     }
 }
