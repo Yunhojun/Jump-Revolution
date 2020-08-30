@@ -40,6 +40,12 @@ public class FlyingEnemyMove : EnemyMove
         
     }
 
+    public override void tread(PlayerMove p)
+    {
+        p.Jump();
+        Destroy();
+    }
+
     IEnumerator VelocityShiftX()
     {
         if (Mathf.Abs(rigid.position.x - spawnPoint.x) > scaleX && shiftXOn == true)
