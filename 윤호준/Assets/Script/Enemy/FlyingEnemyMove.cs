@@ -14,24 +14,26 @@ public class FlyingEnemyMove : EnemyMove
     public bool shiftYOn = true;
 
 
-    protected override void Think()
+   /* protected override void Think()
     {
 
     }
+    */
+     
 
 
     protected override void move()
     {
-        rigid.velocity = new Vector2(nextMoveX * 3, nextMoveY * 2);
+        rigid.velocity = new Vector2(nextMoveX * 3 
+        , nextMoveY * 2 );
 
         //flip
         if (rigid.velocity.x != 0)
         {
             spriteRenderer.flipX = nextMoveX == 1;
-        }
-
-       
+        }  
     }
+
 
     private void Update()
     {
@@ -81,5 +83,6 @@ public class FlyingEnemyMove : EnemyMove
             //yield return new WaitForSeconds(0.5f);
         }
 
-    }
+    }  
+
 }
