@@ -142,7 +142,6 @@ GameObject:
   - component: {fileID: 3223768224533257011}
   - component: {fileID: 3223768224533257010}
   - component: {fileID: 3223768224533257009}
-  - component: {fileID: 3223768224533257022}
   - component: {fileID: 1958885912308341861}
   - component: {fileID: 8717836999691708003}
   m_Layer: 8
@@ -265,22 +264,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.875, y: 0.8125}
   m_EdgeRadius: 0
---- !u!114 &3223768224533257022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3223768224533257013}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97182c59d7e4d7b4cb06d783017289d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFloating: 0
-  objRigid: {fileID: 1333714314217310451, guid: 16f0ba7798df68042b390e1e02dd7a6b,
-    type: 3}
-  distance: 10
 --- !u!95 &1958885912308341861
 Animator:
   serializedVersion: 3
@@ -313,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFloating: 0
-  objRigid: {fileID: 1333714314217310451, guid: 16f0ba7798df68042b390e1e02dd7a6b,
+  objRigid: {fileID: 9208149411016938401, guid: 16f0ba7798df68042b390e1e02dd7a6b,
     type: 3}
   distance: 8
   portalPos: {fileID: 959598150694712902}
