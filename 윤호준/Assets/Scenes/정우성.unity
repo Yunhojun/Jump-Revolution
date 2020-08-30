@@ -9905,12 +9905,20 @@ PrefabInstance:
     - target: {fileID: 9194604960322756154, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: 13.03
+=======
+      value: -11.1
+>>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960322756154, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
       value: 75.32
+=======
+      value: 0.5
+>>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960322756154, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
@@ -9920,12 +9928,20 @@ PrefabInstance:
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: 13.030002
+=======
+      value: -11.099999
+>>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
       value: 75.32
+=======
+      value: 5.2999988
+>>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
@@ -10085,12 +10101,20 @@ PrefabInstance:
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
       value: 13.030002
+=======
+      value: -11.099999
+>>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
       objectReference: {fileID: 0}
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
       value: 75.32
+=======
+      value: 5.2999988
+>>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
       objectReference: {fileID: 0}
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
