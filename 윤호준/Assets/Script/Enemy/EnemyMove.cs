@@ -28,7 +28,7 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    / Update is called once per frame
     protected void FixedUpdate()
     {
         //move
