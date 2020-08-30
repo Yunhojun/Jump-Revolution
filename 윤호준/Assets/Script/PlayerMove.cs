@@ -69,16 +69,17 @@ public class PlayerMove : MonoBehaviour
         ver = Input.GetAxisRaw("Vertical");
 
         // Dash Code
-        if (Input.GetKey(KeyCode.X) && dashCount > 0)
+        if (Input.GetKeyDown(KeyCode.X) && dashCount > 0)
         {
-            if(hor != 0)
-            {
-                DashHor();
-            }
-            else if(ver != 0)
+            if (ver != 0)
             {
                 DashVer();
             }
+            else if (hor != 0)
+            {
+                DashHor();
+            }
+            
         }
 
         if (Input.GetKey(KeyCode.F) && jumpCount == maxJump)

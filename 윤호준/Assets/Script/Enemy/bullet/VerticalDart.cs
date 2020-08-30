@@ -7,7 +7,7 @@ public class VerticalDart : MonoBehaviour
 {
     public float distance;
     Rigidbody2D rigid;
-    public Vector2 Velocity = new Vector2(0, 10.0f);
+    private Vector2 Velocity = new Vector2(0, 10.0f);
     private Vector2 spawnPoint;
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class VerticalDart : MonoBehaviour
 
     IEnumerator VelocityShift()
     {
-        rigid.velocity = new Vector2(0, rigid.velocity.y * -1);
+        rigid.velocity = new Vector2(0,rigid.velocity.y * -1);
         yield return new WaitForSeconds(0.5f);
     }
 
