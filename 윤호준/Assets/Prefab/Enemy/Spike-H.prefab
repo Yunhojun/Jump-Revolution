@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4776306448333572261}
   - component: {fileID: 4776306448333572260}
   - component: {fileID: 4776306448333572263}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: Spike
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 4
+  Velocity: {x: 10, y: 0}
 --- !u!50 &4776306448333572260
 Rigidbody2D:
   serializedVersion: 4
