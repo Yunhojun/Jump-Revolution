@@ -16,7 +16,7 @@ public class FlyingEnemyMove : EnemyMove
 
     protected override void Think()
     {
-        
+
     }
 
 
