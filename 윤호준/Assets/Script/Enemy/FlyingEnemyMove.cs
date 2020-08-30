@@ -14,24 +14,24 @@ public class FlyingEnemyMove : EnemyMove
     public bool shiftYOn = true;
 
 
-    /* protected override void Think()
-     {
+   /* protected override void Think()
+    {
 
-     }
-     */
-
+    }
+    */
+     
 
 
     protected override void move()
     {
-        rigid.velocity = new Vector2(nextMoveX * 3
-        , nextMoveY * 2);
+        rigid.velocity = new Vector2(nextMoveX * 3 
+        , nextMoveY * 2 );
 
         //flip
         if (rigid.velocity.x != 0)
         {
             spriteRenderer.flipX = nextMoveX == 1;
-        }
+        }  
     }
 
 
@@ -39,7 +39,7 @@ public class FlyingEnemyMove : EnemyMove
     {
         StartCoroutine(VelocityShiftX());
         StartCoroutine(VelocityShiftY());
-
+        
     }
 
     public override void tread(PlayerMove p)
@@ -56,7 +56,7 @@ public class FlyingEnemyMove : EnemyMove
             nextMoveX *= -1;
             shiftXOn = false;
             yield return new WaitForSeconds(1f);
-
+            
         }
         else
         {
@@ -75,7 +75,7 @@ public class FlyingEnemyMove : EnemyMove
             nextMoveY *= -1;
             shiftYOn = false;
             yield return new WaitForSeconds(0.5f);
-
+            
         }
         else
         {
@@ -83,15 +83,6 @@ public class FlyingEnemyMove : EnemyMove
             //yield return new WaitForSeconds(0.5f);
         }
 
-    }
-    /*public override void tread(PlayerMove p)
-   {
-       p.Jump();
-       Destroy();
-   }*/
-
-
-
-
+    }  
 
 }
