@@ -56,7 +56,10 @@ public class PlayerMove : MonoBehaviour
         // Jump Code
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
-            Jump();
+            if (!stuned)
+            {
+                Jump();
+            }
         }
 
         // 이동
@@ -105,8 +108,8 @@ public class PlayerMove : MonoBehaviour
         //Move by Key Control
         Move(hor);
 
-        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
-        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy"));
+        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy","FlyingMonster"));
+        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy","FlyingMonster"));
         tread = (enemyRay[0].collider || enemyRay[1].collider);
 
         //on ladder

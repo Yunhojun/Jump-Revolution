@@ -7,8 +7,9 @@ public class HorizontalDart : MonoBehaviour
 {
     public float distance;
     Rigidbody2D rigid;
-    private Vector2 Velocity = new Vector2(10.0f,0);
+    public Vector2 Velocity = new Vector2(10.0f,0);
     private Vector2 spawnPoint;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class HorizontalDart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -32,8 +33,10 @@ public class HorizontalDart : MonoBehaviour
         }
         else
         {
-            rigid.velocity = rigid.velocity.normalized * Velocity.x;
+            rigid.velocity =new Vector2(0.01f,0) + rigid.velocity.normalized * Velocity.x;
         }
+
+        rigid.rotation += 10;
     }
 
     IEnumerator VelocityShift()

@@ -8,6 +8,7 @@ using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject soundManagerCanvas;
     public Text timeText;
     public GameObject clear;
     private int time = 0;
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
             if (isPause == false)
             {
                 Pause.SetActive(true);
+                soundManagerCanvas.SetActive(true);
                 Time.timeScale = 0f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 isPause = true;
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1f;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 Pause.SetActive(false);
+                soundManagerCanvas.SetActive(false);
                 isPause = false;
             }
         }
