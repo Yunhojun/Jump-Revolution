@@ -16,7 +16,7 @@ public class FlyingEnemyMove : EnemyMove
 
     protected override void Think()
     {
-        
+
     }
 
 
@@ -38,6 +38,12 @@ public class FlyingEnemyMove : EnemyMove
         StartCoroutine(VelocityShiftX());
         StartCoroutine(VelocityShiftY());
         
+    }
+
+    public override void tread(PlayerMove p)
+    {
+        p.Jump();
+        Destroy();
     }
 
     IEnumerator VelocityShiftX()
