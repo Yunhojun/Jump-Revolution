@@ -493,6 +493,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map2RankButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5683192159471623728, guid: 4dcc08f9313c8294d864dff381b3aa62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683192159471623728, guid: 4dcc08f9313c8294d864dff381b3aa62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6798756285017989308, guid: 4dcc08f9313c8294d864dff381b3aa62,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1723,6 +1733,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5683192159471623728, guid: 4dcc08f9313c8294d864dff381b3aa62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683192159471623728, guid: 4dcc08f9313c8294d864dff381b3aa62,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6798756285017989308, guid: 4dcc08f9313c8294d864dff381b3aa62,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1941,6 +1961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 4.999939
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360490791136303277, guid: abf866333b38a8b4c9fcc57f97e440a6,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.1640015
       objectReference: {fileID: 0}
     - target: {fileID: 7985003593581135230, guid: abf866333b38a8b4c9fcc57f97e440a6,
         type: 3}
