@@ -82,20 +82,6 @@ public class FlyingEnemyMove : EnemyMove
             shiftYOn = true;
             //yield return new WaitForSeconds(0.5f);
         }
-
-<<<<<<< HEAD
-    }  
-=======
+        
     }
-     public override void tread(PlayerMove p)
-    {
-        p.Jump();
-        Destroy();
-    }
- 
-       
-
-
->>>>>>> parent of 3fa1ac19... wind존 수정 + 조영현씬 맵일부변경
-
 }
