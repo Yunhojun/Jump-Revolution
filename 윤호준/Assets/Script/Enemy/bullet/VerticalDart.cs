@@ -39,7 +39,7 @@ public class VerticalDart : MonoBehaviour
 
     IEnumerator VelocityShift()
     {
-        rigid.velocity = new Vector2(rigid.velocity.y * -1, 0);
+        rigid.velocity = new Vector2(0,rigid.velocity.y * -1);
         yield return new WaitForSeconds(0.5f);
     }
 
