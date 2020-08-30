@@ -56,7 +56,10 @@ public class PlayerMove : MonoBehaviour
         // Jump Code
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
-            Jump();
+            if (!stuned)
+            {
+                Jump();
+            }
         }
 
         // 이동
