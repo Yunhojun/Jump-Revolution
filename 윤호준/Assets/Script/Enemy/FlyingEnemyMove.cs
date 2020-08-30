@@ -83,15 +83,6 @@ public class FlyingEnemyMove : EnemyMove
             //yield return new WaitForSeconds(0.5f);
         }
 
-    }
-     public override void tread(PlayerMove p)
-    {
-        p.Jump();
-        Destroy();
-    }
- 
-       
-
-
+    }  
 
 }
