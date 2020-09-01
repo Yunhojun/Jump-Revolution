@@ -21963,20 +21963,12 @@ PrefabInstance:
     - target: {fileID: 9194604960322756154, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
       value: 48.7
-=======
-      value: -29.3
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960322756154, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
       value: 60.5
-=======
-      value: -24.5
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960322756154, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
@@ -21986,20 +21978,12 @@ PrefabInstance:
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
       value: 48.7
-=======
-      value: -29.3
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
       value: 66.26
-=======
-      value: -19.7
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9194604960791428166, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
@@ -22169,20 +22153,12 @@ PrefabInstance:
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.x
-<<<<<<< Updated upstream
       value: 48.7
-=======
-      value: -29.3
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
       value: 66.26
-=======
-      value: -19.7
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9194604962063898232, guid: f30e9c5c02edd914e8b67414fafa3af6,
         type: 3}
