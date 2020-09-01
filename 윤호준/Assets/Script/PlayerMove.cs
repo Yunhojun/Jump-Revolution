@@ -54,6 +54,20 @@ public class PlayerMove : MonoBehaviour
    void Update() // 키 입력 관련
    {
         // Jump Code
+        //if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
+        //{
+        //    if (!stuned)
+        //    {
+        //        Jump();
+        //    }
+        //}
+
+        // 이동
+        hor = Input.GetAxisRaw("Horizontal"); //좌우이동
+
+        // 사다리 수직이동
+        ver = Input.GetAxisRaw("Vertical");
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
             if (!stuned)
@@ -61,12 +75,6 @@ public class PlayerMove : MonoBehaviour
                 Jump();
             }
         }
-
-        // 이동
-        hor = Input.GetAxisRaw("Horizontal"); //좌우이동
-
-        // 사다리 수직이동
-        ver = Input.GetAxisRaw("Vertical");
 
         // Dash Code
         if (Input.GetKeyDown(KeyCode.X) && dashCount > 0)
@@ -333,7 +341,7 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator RecoverMoveSpeed()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         isNormalSpeed = true;
         moveSpeed = 5f;

@@ -7,7 +7,7 @@ public class HighJumpEnemyMove : EnemyMove
     private static Coroutine co;
     public float sustainmentTime = 3f;
     public override void tread(PlayerMove p){
-        p.jumpPower = 40f;
+        p.jumpPower = 41f;
         p.Jump();
         Destroy();
         if(p.highJumpOn == false)
