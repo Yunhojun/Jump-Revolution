@@ -33,6 +33,9 @@ public class PlayerMove : MonoBehaviour
 
     public Coroutine co = null;
 
+    private float currrentSpeed = 5f;
+    private bool isSit = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -52,22 +55,14 @@ public class PlayerMove : MonoBehaviour
     }
     
    void Update() // 키 입력 관련
-   {
-        // Jump Code
-        //if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
-        //{
-        //    if (!stuned)
-        //    {
-        //        Jump();
-        //    }
-        //}
-
+   {        
         // 이동
         hor = Input.GetAxisRaw("Horizontal"); //좌우이동
 
         // 사다리 수직이동
         ver = Input.GetAxisRaw("Vertical");
 
+        // Jump Code
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0) // 점프
         {
             if (!stuned)
@@ -102,11 +97,11 @@ public class PlayerMove : MonoBehaviour
 
 
         // 앉기 버튼
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl)&&jumpCount==maxJump)
             Sit();
 
         // 일어서기 버튼
-        if(Input.GetKeyUp(KeyCode.LeftControl))
+        if(Input.GetKeyUp(KeyCode.LeftControl)&&isSit)
             Stand();
                  
              
@@ -163,11 +158,16 @@ public class PlayerMove : MonoBehaviour
 
     public void Stand() // 일어서기
     {
+        moveSpeed = currrentSpeed;
+        isSit = false;
         transform.localScale = new Vector3(1, 1, 0);
         transform.Translate(new Vector3(0, 0.25f, 0));
     }
     public void Sit() // 앉기
     {
+        currrentSpeed = moveSpeed;
+        moveSpeed = 0f;
+        isSit = true;
         transform.localScale = new Vector3(1, 0.5f, 0);
         transform.Translate(new Vector3(0, -0.25f, 0));
     }
@@ -343,8 +343,12 @@ public class PlayerMove : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
 
+        currrentSpeed = 5f;
         isNormalSpeed = true;
-        moveSpeed = 5f;
+        if (!isSit)
+        {
+            moveSpeed = 5f;
+        }
     }
 
     public IEnumerator RecoverJumpPower()
