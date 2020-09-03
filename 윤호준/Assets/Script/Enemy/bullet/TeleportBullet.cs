@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class TeleportBullet : bullet
@@ -25,6 +24,7 @@ public class TeleportBullet : bullet
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<PlayerMove>().Stun(0.5f);
             collision.gameObject.GetComponent<Rigidbody2D>().position = teleportPos;
             DestroyBullet();
             hit = true;

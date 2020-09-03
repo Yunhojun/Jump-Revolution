@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3612650215948566402}
   m_Layer: 13
   m_Name: Ice Bullet
-  m_TagString: Enemy
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

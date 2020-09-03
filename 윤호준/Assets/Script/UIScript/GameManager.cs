@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.PlayerLoop;
-using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {

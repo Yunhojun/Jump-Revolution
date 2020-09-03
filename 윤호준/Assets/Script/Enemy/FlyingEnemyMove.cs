@@ -14,18 +14,17 @@ public class FlyingEnemyMove : EnemyMove
     public bool shiftYOn = true;
 
 
-    /* protected override void Think()
+     protected override void Think()
      {
 
      }
-     */
+     
 
 
 
     protected override void move()
     {
-        rigid.velocity = new Vector2(nextMoveX * 3
-        , nextMoveY * 2);
+        rigid.velocity = new Vector2(nextMoveX * 3, nextMoveY * 2);
 
         //flip
         if (rigid.velocity.x != 0)
@@ -37,9 +36,14 @@ public class FlyingEnemyMove : EnemyMove
 
     private void Update()
     {
-        StartCoroutine(VelocityShiftX());
-        StartCoroutine(VelocityShiftY());
-
+        if ((Mathf.Abs(rigid.position.x - spawnPoint.x) > scaleX) && (shiftXOn == true))
+        {
+            StartCoroutine(VelocityShiftX());
+        }
+        else if ((Mathf.Abs(rigid.position.y - spawnPoint.y) > scaleY) && (shiftYOn == true))
+        {
+            StartCoroutine(VelocityShiftY());
+        }
     }
 
     public override void tread(PlayerMove p)
@@ -49,38 +53,23 @@ public class FlyingEnemyMove : EnemyMove
 
     IEnumerator VelocityShiftX()
     {
-        if (Mathf.Abs(rigid.position.x - spawnPoint.x) > scaleX && shiftXOn == true)
-        {
-            Debug.Log("Shiftx");
-            nextMoveX *= -1;
-            shiftXOn = false;
-            yield return new WaitForSeconds(1f);
-
-        }
-        else
-        {
-            shiftXOn = true;
-            //yield return new WaitForSeconds(0.5f);
-        }
+        nextMoveX *= -1;
+        Debug.Log("ShiftX");
+        shiftXOn = false;
+        yield return new WaitForSeconds(1f);
+        shiftXOn = true;
 
 
     }
 
     IEnumerator VelocityShiftY()
     {
-        if (Mathf.Abs(rigid.position.y - spawnPoint.y) > scaleY && shiftYOn == true)
-        {
-            Debug.Log("Shifty");
-            nextMoveY *= -1;
-            shiftYOn = false;
-            yield return new WaitForSeconds(0.5f);
-
-        }
-        else
-        {
-            shiftYOn = true;
-            //yield return new WaitForSeconds(0.5f);
-        }
+        nextMoveY *= -1;
+        Debug.Log("ShiftY");
+        shiftYOn = false;
+        yield return new WaitForSeconds(0.5f);
+        shiftYOn = true;
+        
 
     }
 }

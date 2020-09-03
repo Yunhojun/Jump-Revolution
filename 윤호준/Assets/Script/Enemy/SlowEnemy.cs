@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlowEnemy : EnemyMove
 {
     private Coroutine co;
+    public float sustainmentTime = 3f;
     public override void tread(PlayerMove p)
     {
         base.tread(p);
@@ -13,14 +14,14 @@ public class SlowEnemy : EnemyMove
         if (p.isNormalSpeed)
         {
             p.isNormalSpeed = false;
-            p.SetCoroutine(0);
+            p.SetCoroutine(sustainmentTime);
             co = p.GetCoroutine();
         }
         else
         {
             co = p.GetCoroutine();
             StopCoroutine(co);
-            p.SetCoroutine(0);
+            p.SetCoroutine(sustainmentTime);
         }
     }
 }

@@ -327,21 +327,14 @@ public class PlayerMove : MonoBehaviour
         return co;
     }
 
-    public void SetCoroutine(int i)
+    public void SetCoroutine(float t)
     {
-        if (i == 0)
-        {
-            co = StartCoroutine(RecoverMoveSpeed());
-        }
-        else
-        {
-            co = StartCoroutine(RecoverJumpPower());
-        }
+        co = StartCoroutine(RecoverMoveSpeed(t));
     }
 
-    public IEnumerator RecoverMoveSpeed()
+    public IEnumerator RecoverMoveSpeed(float t)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(t);
 
         currrentSpeed = 5f;
         isNormalSpeed = true;
@@ -349,13 +342,5 @@ public class PlayerMove : MonoBehaviour
         {
             moveSpeed = 5f;
         }
-    }
-
-    public IEnumerator RecoverJumpPower()
-    {
-        yield return new WaitForSeconds(5f);
-
-        isNormalSpeed = true;
-        jumpPower = 21f;
     }
 }

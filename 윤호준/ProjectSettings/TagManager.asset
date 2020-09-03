@@ -10,6 +10,7 @@ TagManager:
   - ScaleX
   - floor
   - FxTemporaire
+  - Bullet
   layers:
   - Default
   - TransparentFX
