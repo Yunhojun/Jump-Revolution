@@ -110,7 +110,7 @@ public class EnemyMove : MonoBehaviour
     public virtual void tread(PlayerMove p)
     {
         p.Jump();
-        Instantiate(disappear, transform.position, transform.rotation);
+        Instantiate(disappear, transform.position, Quaternion.Euler(-90,0,0));
         Destroy();
     }
 }
