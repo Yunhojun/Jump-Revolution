@@ -9,7 +9,7 @@ public class ExplosiveEnemy : EnemyMove
     public GameObject explosion;
     [SerializeField]
     private float force = 1500;
-    
+
     protected override void move()
     {
         base.move();

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2225102027475774499}
   m_Layer: 13
   m_Name: TeleportBullet
-  m_TagString: Enemy
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,4 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionOn: 0
   hit: 0
-  spawnPoint: {x: 0, y: 0}
+  TeleportEffect: {fileID: 100000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
+  teleportPos: {x: 0, y: 0}
+  portalPos: {fileID: 0}

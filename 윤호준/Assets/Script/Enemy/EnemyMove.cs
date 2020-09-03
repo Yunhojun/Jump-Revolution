@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    public GameObject disappear;
     protected Rigidbody2D rigid;
     protected int nextMove = -1;
     protected Animator anim;
@@ -37,7 +38,7 @@ public class EnemyMove : MonoBehaviour
             move();
         }
     }
-    
+
     protected void Respwan()
     {
         transform.position = spawnPoint;
@@ -104,11 +105,12 @@ public class EnemyMove : MonoBehaviour
                 Invoke("Think", 5f);
             }
         }
-    }    
+    }
 
     public virtual void tread(PlayerMove p)
     {
         p.Jump();
+        Instantiate(disappear, transform.position, Quaternion.Euler(-90,0,0));
         Destroy();
     }
 }

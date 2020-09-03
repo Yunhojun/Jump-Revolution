@@ -6,10 +6,11 @@ public class LowJumpEnemyMove : EnemyMove
 {
     private static Coroutine co;
     public float sustainmentTime = 3f;
-    public override void tread(PlayerMove p){
-        p.Jump();
+    public override void tread(PlayerMove p)
+    {
+        base.tread(p);
         p.jumpPower = 10f;
-        Destroy();
+
         if (p.lowJumpOn == false)
         {
             p.lowJumpOn = true;
