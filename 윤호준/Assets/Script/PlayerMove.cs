@@ -97,7 +97,7 @@ public class PlayerMove : MonoBehaviour
 
 
         // 앉기 버튼
-        if (Input.GetKeyDown(KeyCode.LeftControl)&&jumpCount==maxJump)
+        if (Input.GetKey(KeyCode.LeftControl)&&jumpCount==maxJump&&!isSit)
             Sit();
 
         // 일어서기 버튼
@@ -290,7 +290,21 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder"))
+        if (collision.CompareTag("Ladder")&&ver != 0)
+        {
+            if (!stuned)
+            {
+                isLadder = true;
+                rigid.Sleep();
+                rigid.gravityScale = 0;
+                InitJumpCount();
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder") && ver != 0)
         {
             if (!stuned)
             {
