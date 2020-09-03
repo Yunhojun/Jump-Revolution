@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ExplosiveEnemy : EnemyMove
 {
-
+    public GameObject explosion;
     [SerializeField]
     private float force = 1500;
 
@@ -24,7 +24,7 @@ public class ExplosiveEnemy : EnemyMove
         p.Stun(1.5f);
         //폭발 이펙트
         SoundScript.Inst.explosionPlayer();
-
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy();
     }
 }
