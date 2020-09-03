@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("MapSelectScene");
+        SceneManager.LoadScene("Title");
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
