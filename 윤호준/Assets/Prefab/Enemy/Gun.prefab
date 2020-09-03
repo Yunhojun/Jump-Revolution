@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97182c59d7e4d7b4cb06d783017289d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disappear: {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
   isFloating: 0
   objRigid: {fileID: 7628710431043826244, guid: 4f12e8e79b96d614a8a7ad4bdbd1ff60,
     type: 3}

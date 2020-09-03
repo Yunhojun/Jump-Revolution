@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SlowEnemy : EnemyMove
-{    
+{
     private Coroutine co;
     public float sustainmentTime = 3f;
     public override void tread(PlayerMove p)
     {
-        p.Jump();
+        base.tread(p);
         p.moveSpeed = 2.5f;
-        Destroy();
         co = p.GetCoroutine();
         if (p.isNormalSpeed)
         {
@@ -24,5 +23,5 @@ public class SlowEnemy : EnemyMove
             StopCoroutine(co);
             p.SetCoroutine(sustainmentTime);
         }
-    }    
+    }
 }
