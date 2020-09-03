@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f72c4e3b0bb9c349b4f259c29758827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disappear: {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
   isFloating: 0
 --- !u!61 &1533854413
 BoxCollider2D:

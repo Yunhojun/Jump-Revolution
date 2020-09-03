@@ -6,11 +6,12 @@ public class HighJumpEnemyMove : EnemyMove
 {
     private static Coroutine co;
     public float sustainmentTime = 3f;
-    public override void tread(PlayerMove p){
+    public override void tread(PlayerMove p)
+    {
         p.jumpPower = 41f;
-        p.Jump();
-        Destroy();
-        if(p.highJumpOn == false)
+        base.tread(p);
+
+        if (p.highJumpOn == false)
         {
             p.highJumpOn = true;
             co = StartCoroutine(SustainmentHighJump(p));
@@ -20,7 +21,7 @@ public class HighJumpEnemyMove : EnemyMove
             StopCoroutine(co);
             co = StartCoroutine(SustainmentHighJump(p));
         }
-        
+
     }
 
     IEnumerator SustainmentHighJump(PlayerMove p2)

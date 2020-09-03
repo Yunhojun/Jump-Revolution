@@ -19,7 +19,7 @@ public class IceBullet : bullet
         {
             collision.gameObject.GetComponent<PlayerMove>().Stun(2f);
             DestroyBullet();
-            collisionOn = false;
+            hit = true;
         }
     }
 }

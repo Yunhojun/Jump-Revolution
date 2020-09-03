@@ -24,6 +24,7 @@ public class TeleportBullet : bullet
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<PlayerMove>().Stun(0.5f);
             collision.gameObject.GetComponent<Rigidbody2D>().position = teleportPos;
             DestroyBullet();
             hit = true;
