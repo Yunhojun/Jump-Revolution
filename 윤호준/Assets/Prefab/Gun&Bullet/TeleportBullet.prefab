@@ -145,5 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionOn: 0
   hit: 0
+  TeleportEffect: {fileID: 100000, guid: ada5d62ffe762ce4fbccc70dcdbc9022, type: 3}
   teleportPos: {x: 0, y: 0}
   portalPos: {fileID: 0}
