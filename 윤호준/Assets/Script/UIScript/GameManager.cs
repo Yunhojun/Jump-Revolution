@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
+        soundManagerCanvas.SetActive(false);
         isPause = false;
     }
 
@@ -105,6 +106,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
+        soundManagerCanvas.SetActive(false);
         isPause = false;
     }
 
@@ -113,6 +115,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
+        soundManagerCanvas.SetActive(false);
         isPause = false;
     }
 

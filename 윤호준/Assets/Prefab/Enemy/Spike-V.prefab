@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3006547022342414399}
   - component: {fileID: 3006547022342414396}
   - component: {fileID: 7778209133148256268}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Spike-V
   m_TagString: Enemy
   m_Icon: {fileID: 0}
