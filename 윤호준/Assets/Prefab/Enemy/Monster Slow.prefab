@@ -138,9 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86e9e6e7b17fea4b9f4a43d58421742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disappear: {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
   isFloating: 0
-  slowRate: 50
-  slowTime: 3
 --- !u!70 &4839366047064583514
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

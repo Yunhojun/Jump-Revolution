@@ -44,8 +44,7 @@ public class FlyingEnemyMove : EnemyMove
 
     public override void tread(PlayerMove p)
     {
-        p.Jump();
-        Destroy();
+        base.tread(p);
     }
 
     IEnumerator VelocityShiftX()
