@@ -26,4 +26,6 @@ public class StageSelect : MonoBehaviour
         GameManager.presentScene = map.GetMapName();
     }
 
+    
+
 }

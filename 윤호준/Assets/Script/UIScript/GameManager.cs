@@ -110,6 +110,8 @@ public class GameManager : MonoBehaviour
         isPause = false;
     }
 
+    
+
     public void ContinueButton()
     {
         Time.timeScale = 1f;
@@ -125,6 +127,11 @@ public class GameManager : MonoBehaviour
         rank.SortAndSave();
         Debug.Log("세이브 성공");
         inputNameBool = true;
+    }
+
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene("Title");
     }
 
     public int GetTime()
