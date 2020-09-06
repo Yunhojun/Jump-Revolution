@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
             
             yield return new WaitForSeconds(1f);
             time += 1;
-            timeText.text = "Time : " + time;
+            timeText.text = "Time : " + string.Format("{0:00}:{1:00}:{2:00}",time/3600, (time/60)%60, time%60);
         }
 
 
-        timeText.text = "Time : " + time;
+        timeText.text = "Time : " + string.Format("{0:00}:{1:00}:{2:00}", time / 3600, (time / 60) % 60, time % 60);
         clear.SetActive(true);
     }
 
