@@ -753,6 +753,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4220978599093245971, guid: e39460da41bdc104bbcfbb50777f451f,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e2b8b415c9df2047861836fc436a69e, type: 3}
     - target: {fileID: 4220978599781692254, guid: e39460da41bdc104bbcfbb50777f451f,
         type: 3}
       propertyPath: m_AnchorMax.y
