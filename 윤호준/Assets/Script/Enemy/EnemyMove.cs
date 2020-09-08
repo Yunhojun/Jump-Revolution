@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -14,8 +15,13 @@ public class EnemyMove : MonoBehaviour
     public bool isFloating;
     protected Collider2D _collider;
 
+    public Image image;
+    protected float sustainmentTime = 5;
+    float time;
+
     protected void Awake()
     {
+        time = 0;
         destroyed = false;
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -31,7 +37,12 @@ public class EnemyMove : MonoBehaviour
 
     // Update is called once per frame
     protected void FixedUpdate()
-    {
+    {        
+        if (destroyed)
+        {
+            time += Time.deltaTime;
+            buff();
+        }
         //move
         if (!destroyed && !isFloating)
         {
@@ -112,5 +123,10 @@ public class EnemyMove : MonoBehaviour
         p.Jump();
         Instantiate(disappear, transform.position, Quaternion.Euler(-90,0,0));
         Destroy();
+    }
+
+    void buff()
+    {
+        image.fillAmount = 1f - (time/sustainmentTime);
     }
 }

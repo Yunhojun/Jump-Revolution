@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disappear: {fileID: 100000, guid: 7d6835d9db898fa4bbfda5d62c496786, type: 3}
   isFloating: 0
+  image: {fileID: 0}
 --- !u!61 &1533854413
 BoxCollider2D:
   m_ObjectHideFlags: 0

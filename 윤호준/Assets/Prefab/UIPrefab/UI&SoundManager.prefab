@@ -245,6 +245,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 978980046403214726, guid: 01a8ca404f6e39648906bb60eb4b9cf1,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Time : 00:00:00'
+      objectReference: {fileID: 0}
+    - target: {fileID: 978980046403214726, guid: 01a8ca404f6e39648906bb60eb4b9cf1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978980046403214726, guid: 01a8ca404f6e39648906bb60eb4b9cf1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 978980046403214726, guid: 01a8ca404f6e39648906bb60eb4b9cf1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 978980046689691134, guid: 01a8ca404f6e39648906bb60eb4b9cf1,
         type: 3}
       propertyPath: m_LocalPosition.z
