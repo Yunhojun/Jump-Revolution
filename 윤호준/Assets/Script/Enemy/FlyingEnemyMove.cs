@@ -54,7 +54,6 @@ public class FlyingEnemyMove : EnemyMove
     IEnumerator VelocityShiftX()
     {
         nextMoveX *= -1;
-        Debug.Log("ShiftX");
         shiftXOn = false;
         yield return new WaitForSeconds(1f);
         shiftXOn = true;
@@ -63,7 +62,6 @@ public class FlyingEnemyMove : EnemyMove
     IEnumerator VelocityShiftY()
     {
         nextMoveY *= -1;
-        Debug.Log("ShiftY");
         shiftYOn = false;
         yield return new WaitForSeconds(0.5f);
         shiftYOn = true;

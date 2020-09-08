@@ -19,7 +19,7 @@ public class ExplosiveEnemy : EnemyMove
     public override void tread(PlayerMove p)
     {
         Rigidbody2D playerRigid = p.rigid;
-        Vector2 dir = playerRigid.position - rigid.position;
+        Vector2 dir = (playerRigid.position - rigid.position).normalized;
         playerRigid.AddForce(dir * force);
         p.Stun(1.5f);
         //폭발 이펙트
