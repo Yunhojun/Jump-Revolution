@@ -15,6 +15,7 @@ public class Gun : EnemyMove
     Transform bulletTrf = null;
     Collider2D bulletCol = null;
     bool fliped = false;
+    public float bulletVelocity = 5;
     //public float count = 0;
 
     // Start is called before the first frame update
@@ -41,11 +42,11 @@ public class Gun : EnemyMove
         {
             if (!fliped)
             {
-                objIns.velocity = new Vector2(-5, 0);
+                objIns.velocity = new Vector2(-1*bulletVelocity, 0);
             }
             else
             {
-                objIns.velocity = new Vector2(5, 0);
+                objIns.velocity = new Vector2(bulletVelocity, 0);
             }
             if (Mathf.Abs((spawnPoint.x - objIns.position.x)) > distance)
             {
