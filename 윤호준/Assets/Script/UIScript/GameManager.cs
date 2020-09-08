@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
             
             yield return new WaitForSeconds(1f);
             time += 1;
-            timeText.text = "Time : " + time;
+            timeText.text = "Time : " + string.Format("{0:00}:{1:00}:{2:00}",time/3600, (time/60)%60, time%60);
         }
 
 
-        timeText.text = "Time : " + time;
+        timeText.text = "Time : " + string.Format("{0:00}:{1:00}:{2:00}", time / 3600, (time / 60) % 60, time % 60);
         clear.SetActive(true);
     }
 
@@ -96,23 +96,28 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
+        soundManagerCanvas.SetActive(false);
         isPause = false;
     }
 
     public void Exit()
     {
-        SceneManager.LoadScene("MapSelectScene");
+        SceneManager.LoadScene("Title");
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
+        soundManagerCanvas.SetActive(false);
         isPause = false;
     }
+
+    
 
     public void ContinueButton()
     {
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         Pause.SetActive(false);
+        soundManagerCanvas.SetActive(false);
         isPause = false;
     }
 
@@ -122,6 +127,11 @@ public class GameManager : MonoBehaviour
         rank.SortAndSave();
         Debug.Log("세이브 성공");
         inputNameBool = true;
+    }
+
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene("Title");
     }
 
     public int GetTime()

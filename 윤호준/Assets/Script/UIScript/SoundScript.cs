@@ -15,6 +15,7 @@ public class SoundScript : MonoBehaviour
     public AudioClip shot;
     public AudioClip dash;
     public AudioClip explosion;
+    public AudioClip teleport;
 
     // Start is called before the first frame update
 
@@ -57,5 +58,9 @@ public class SoundScript : MonoBehaviour
     public void explosionPlayer()
     {
         myaudio.PlayOneShot(explosion);
+    }
+    public void teleportPlayer()
+    {
+        myaudio.PlayOneShot(teleport);
     }
 }

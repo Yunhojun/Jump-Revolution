@@ -34,27 +34,27 @@ public class Rank : MonoBehaviour
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManFirst") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeFirst"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManFirst"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFirst"));
         else
-            rankDict.Add("null1", 50000);
+            rankDict.Add("null1", 100000);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManSecond") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeSecond"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManSecond"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeSecond"));
         else
-            rankDict.Add("null2", 50000);
+            rankDict.Add("null2", 100000);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManThird") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeThird"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManThird"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeThird"));
         else
-            rankDict.Add("null3", 50000);
+            rankDict.Add("null3", 100000);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManFourth") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeFourth"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManFourth"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFourth"));
         else
-            rankDict.Add("null4", 50000);
+            rankDict.Add("null4", 100000);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManFifth") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeFifth"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManFifth"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFifth"));
         else
-            rankDict.Add("null5", 50000);
+            rankDict.Add("null5", 100000);
 
         if (rankDict.ContainsKey(gmr.inputName.text))
         {
@@ -94,23 +94,28 @@ public class Rank : MonoBehaviour
     {
         //1등
         rankers[0].text = PlayerPrefs.GetString("Map" + mapNum + "ClearManFirst");
-        rankerTimes[0].text = "" + PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFirst") + "s";
+        times[0] = PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFirst");
+        rankerTimes[0].text = "" + string.Format("{0:00}:{1:00}:{2:00}", times[0] / 3600, (times[0] / 60) % 60, times[0] % 60);
 
         //2등
         rankers[1].text = PlayerPrefs.GetString("Map" + mapNum + "ClearManSecond");
-        rankerTimes[1].text = "" + PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeSecond") + "s";
+        times[1] = PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeSecond");
+        rankerTimes[1].text = "" + string.Format("{0:00}:{1:00}:{2:00}", times[1] / 3600, (times[1] / 60) % 60, times[1] % 60);
 
         //3등
         rankers[2].text = PlayerPrefs.GetString("Map" + mapNum + "ClearManThird");
-        rankerTimes[2].text = "" + PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeThird") + "s";
+        times[2] = PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeThird");
+        rankerTimes[2].text = "" + string.Format("{0:00}:{1:00}:{2:00}", times[2] / 3600, (times[2] / 60) % 60, times[2] % 60);
 
         //4등
         rankers[3].text = PlayerPrefs.GetString("Map" + mapNum + "ClearManFourth");
-        rankerTimes[3].text = "" + PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFourth") + "s";
+        times[3] = PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFourth");
+        rankerTimes[3].text = "" + string.Format("{0:00}:{1:00}:{2:00}", times[3] / 3600, (times[3] / 60) % 60, times[3] % 60);
 
         //5등
         rankers[4].text = PlayerPrefs.GetString("Map" + mapNum + "ClearManFifth");
-        rankerTimes[4].text = "" + PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFifth") + "s";
+        times[4] = PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFifth");
+        rankerTimes[4].text = "" + string.Format("{0:00}:{1:00}:{2:00}", times[4] / 3600, (times[4] / 60) % 60, times[4] % 60);
 
         Debug.Log("로드 성공");
     }

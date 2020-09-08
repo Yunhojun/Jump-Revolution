@@ -69,6 +69,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4220978599093245968, guid: e39460da41bdc104bbcfbb50777f451f,
+        type: 3}
+      propertyPath: dash
+      value: 
+      objectReference: {fileID: 8300000, guid: 624f06bd79870a042ab7743f1e01cdc9, type: 3}
+    - target: {fileID: 4220978599093245968, guid: e39460da41bdc104bbcfbb50777f451f,
+        type: 3}
+      propertyPath: teleport
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bd7c6a0c6a8fac4e9f10cb389b35386, type: 3}
     - target: {fileID: 4220978599093245969, guid: e39460da41bdc104bbcfbb50777f451f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -129,6 +139,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4220978599093245971, guid: e39460da41bdc104bbcfbb50777f451f,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 30ba49fef3af3a046a49da0e4d4c895a, type: 3}
     - target: {fileID: 4220978599241834313, guid: e39460da41bdc104bbcfbb50777f451f,
         type: 3}
       propertyPath: m_IsActive

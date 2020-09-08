@@ -58,8 +58,6 @@ public class FlyingEnemyMove : EnemyMove
         shiftXOn = false;
         yield return new WaitForSeconds(1f);
         shiftXOn = true;
-
-
     }
 
     IEnumerator VelocityShiftY()
@@ -69,7 +67,5 @@ public class FlyingEnemyMove : EnemyMove
         shiftYOn = false;
         yield return new WaitForSeconds(0.5f);
         shiftYOn = true;
-        
-
     }
 }
