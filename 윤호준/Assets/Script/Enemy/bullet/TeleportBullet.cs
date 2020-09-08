@@ -27,6 +27,7 @@ public class TeleportBullet : bullet
         {
             collision.gameObject.GetComponent<PlayerMove>().Stun(0.5f);
             collision.gameObject.GetComponent<Rigidbody2D>().position = teleportPos;
+            SoundScript.Inst.teleportPlayer();
             Instantiate(TeleportEffect, teleportPos, Quaternion.Euler(-90, 0, 0));
             DestroyBullet();
             hit = true;
