@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InformationBox : MonoBehaviour
 {
-    public bool boxOn = false;
+    public static bool boxOn = false;
     public GameObject canvas2;
 
     private void OnCollisionEnter2D(Collision2D collision)
