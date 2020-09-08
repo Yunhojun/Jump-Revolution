@@ -14,12 +14,10 @@ public class PlayerMove : MonoBehaviour
     public int dashCount { get; set; } = 0;  // 대쉬 횟수
     private const int maxJump = 1; //최대 점프 횟수, 2단 점프를 가능하게 하려면 2로 수정
     private bool dashed;
-    private bool tread;  // 밟기 가능한 상태 인지 여부
     private bool stuned { get; set; } // 이동가능한 상태 인지 여부
     private Transform Character; // 대쉬 할때 필요한 위치 변수
     public float hor { get; private set; } //좌우 입력
     private float ver; //사다리용 상하 입력
-    RaycastHit2D[] enemyRay = new RaycastHit2D[2]; //적을 밟을 수 있는지 판단하는 레이
     private Vector2 savePos;
     public GameObject SavePoint;
     public GameObject DashEffect;
@@ -41,7 +39,6 @@ public class PlayerMove : MonoBehaviour
     {
         hor = 0;
         ver = 0;
-        tread = false;
         stuned = false;
         isLadder = false;
         StunCheck = GetComponentInChildren<Stun>();
@@ -110,11 +107,7 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate() // 이동관련
     {
         //Move by Key Control
-        Move(hor);
-
-        enemyRay[0] = Physics2D.Raycast(transform.position + Vector3.right * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy","FlyingMonster"));
-        enemyRay[1] = Physics2D.Raycast(transform.position + Vector3.left * 0.4f + Vector3.down * 0.4f, Vector3.down, 1, LayerMask.GetMask("Enemy","FlyingMonster"));
-        tread = (enemyRay[0].collider || enemyRay[1].collider);
+        Move(hor);        
 
         //on ladder
         if (isLadder)
@@ -218,21 +211,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))//collide with monster
         {
-            if (tread == false)//적에게 맞았을 때
-            {
-                OnDamaged(collision.transform.position);
-            }
-            else//적을 밟았을 때
-            {
-                EnemyMove e = collision.gameObject.GetComponent<EnemyMove>();
-                if(e != null)
-                {
-                    e.tread(this);
-                }
-                else {
-                    OnDamaged(collision.transform.position);
-                }
-            }
+            OnDamaged(collision.transform.position);
         }
         if (collision.gameObject.CompareTag("floor"))//collide with floor
         {
@@ -313,7 +292,7 @@ public class PlayerMove : MonoBehaviour
                 rigid.gravityScale = 0;
                 InitJumpCount();
             }
-        }
+        }        
     }
 
     void OnTriggerExit2D(Collider2D collision)
