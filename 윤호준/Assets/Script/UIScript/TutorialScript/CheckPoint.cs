@@ -10,7 +10,9 @@ public class CheckPoint : MonoBehaviour
     public Vector3[] cameraPositions = new Vector3[6];
     public Vector2[] characterPositions = new Vector2[6];
     private string[] textBoxes = new string[6];
+    private string[] monsterText = new string[6];
     public Text text;
+    public Text title;
 
     private void Start()
     {
@@ -50,6 +52,13 @@ public class CheckPoint : MonoBehaviour
         textBoxes[3] = "text4";
         textBoxes[4] = "text5";
         textBoxes[5] = "End";
+
+        monsterText[0] = "Jump Monster";
+        monsterText[1] = "Buff/Debuff";
+        monsterText[2] = "Dash Monster";
+        monsterText[3] = "Gun Monster";
+        monsterText[4] = "Monster";
+        monsterText[5] = "End";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -61,7 +70,9 @@ public class CheckPoint : MonoBehaviour
             collision.gameObject.GetComponent<PlayerMove>().Stun(0.5f);
             collision.gameObject.GetComponent<Rigidbody2D>().position = characterPositions[tutorialSceneNum];
             cameraObject.transform.position = cameraPositions[tutorialSceneNum];
+            title.text = monsterText[tutorialSceneNum];
             text.text = textBoxes[tutorialSceneNum];
+            
         }
     }
 }
