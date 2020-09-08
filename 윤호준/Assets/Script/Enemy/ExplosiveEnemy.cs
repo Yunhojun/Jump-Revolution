@@ -21,6 +21,7 @@ public class ExplosiveEnemy : EnemyMove
         Rigidbody2D playerRigid = p.rigid;
         Vector2 dir = playerRigid.position - rigid.position;
         playerRigid.AddForce(dir * force);
+        Debug.Log(dir.magnitude);
         p.Stun(1.5f);
         //폭발 이펙트
         SoundScript.Inst.explosionPlayer();
