@@ -15,13 +15,11 @@ public class EnemyMove : MonoBehaviour
     public bool isFloating;
     protected Collider2D _collider;
 
-    public Image image;
-    protected float sustainmentTime = 5;
-    float time;
+    public Sprite buffIcon = null;
+    protected float sustainmentTime = 3f;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
-        time = 0;
         destroyed = false;
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -37,12 +35,7 @@ public class EnemyMove : MonoBehaviour
 
     // Update is called once per frame
     protected void FixedUpdate()
-    {        
-        if (destroyed)
-        {
-            time += Time.deltaTime;
-            buff();
-        }
+    {  
         //move
         if (!destroyed && !isFloating)
         {
@@ -125,8 +118,11 @@ public class EnemyMove : MonoBehaviour
         Destroy();
     }
 
-    void buff()
+    protected void buff(bool type)
     {
-        image.fillAmount = 1f - (time/sustainmentTime);
+        if(buffIcon != null)
+        {
+            Buff.buffInstance.BuffStrart(buffIcon, sustainmentTime, type);
+        }
     }
 }

@@ -5,10 +5,20 @@ using UnityEngine;
 public class HighJumpEnemyMove : EnemyMove
 {
     private static Coroutine co;
-    public float sustainmentTime = 3f;
+    public float buffTime = 3f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        sustainmentTime = buffTime;
+        buffIcon = spriteRenderer.sprite;
+    }
+
     public override void tread(PlayerMove p)
     {
         p.jumpPower = 41f;
+        buff(false);
+
         base.tread(p);
 
         if (p.highJumpOn == false)

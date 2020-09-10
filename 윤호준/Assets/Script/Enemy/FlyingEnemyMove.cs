@@ -13,14 +13,10 @@ public class FlyingEnemyMove : EnemyMove
     public bool shiftXOn = true;
     public bool shiftYOn = true;
 
+    protected override void Think()
+    {
 
-     protected override void Think()
-     {
-
-     }
-     
-
-
+    }     
 
     protected override void move()
     {
@@ -44,11 +40,6 @@ public class FlyingEnemyMove : EnemyMove
         {
             StartCoroutine(VelocityShiftY());
         }
-    }
-
-    public override void tread(PlayerMove p)
-    {
-        base.tread(p);
     }
 
     IEnumerator VelocityShiftX()

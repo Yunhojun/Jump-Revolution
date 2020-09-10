@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     private bool inputNameBool = false;
     public InputField inputName;
     public Rank rank;
+    public Buff buffManager;
 
 
     // Start is called before the first frame update
@@ -32,10 +33,7 @@ public class GameManager : MonoBehaviour
         if(fin == true && inputNameBool == true)
         {
             StartCoroutine(SceneChange());
-        }
-
-
-        
+        }        
     }
 
     private void Update()

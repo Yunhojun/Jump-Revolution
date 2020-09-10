@@ -8,6 +8,5 @@ public class TrippleJumpEnemyMove : EnemyMove
     {
         base.tread(p);
         p.jumpCount = 2;
-
     }
 }

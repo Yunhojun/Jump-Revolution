@@ -14,13 +14,7 @@ public class LaserScript : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
         StartCoroutine(LaserCoroutine());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
+    }    
 
     IEnumerator LaserCoroutine()
     {

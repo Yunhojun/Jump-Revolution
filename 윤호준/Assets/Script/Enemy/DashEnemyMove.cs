@@ -9,6 +9,5 @@ public class DashEnemyMove : EnemyMove
         base.tread(p);
 
         p.dashCount = 1;
-
     }
 }

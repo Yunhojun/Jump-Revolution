@@ -5,12 +5,21 @@ using UnityEngine;
 public class BoostEnemy : EnemyMove
 {    
     private Coroutine co;
-    public float sustainmentTime = 3f;
+    public float BoostTime = 3f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        buffIcon = spriteRenderer.sprite;
+        sustainmentTime = BoostTime;
+    }
+
     public override void tread(PlayerMove p)
     {
-        p.Jump();
+        base.tread(p);
+        buff(true);
+
         p.moveSpeed = 10f;
-        Destroy();
         co = p.GetCoroutine();
         if (p.isNormalSpeed)
         {

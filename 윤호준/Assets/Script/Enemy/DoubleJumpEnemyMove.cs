@@ -10,6 +10,5 @@ public class DoubleJumpEnemyMove : EnemyMove
         base.tread(p);
 
         p.jumpCount = 1;
-
     }
 }
