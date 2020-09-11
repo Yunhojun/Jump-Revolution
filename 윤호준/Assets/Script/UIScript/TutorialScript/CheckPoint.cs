@@ -48,8 +48,8 @@ public class CheckPoint : MonoBehaviour
 
     private void TextSetting()
     {
-        textBoxes[0] = "Press the Arrow key to move And Space key to Jump"; //튜토리얼 첫번째 텍스트
-        textBoxes[1] = "Rabbit: Double Jump \n Slime: Tripple Jump "; //첫번째맵 2번
+        textBoxes[0] = "Press the Arrow key to move And Space key to Jump\nL-Ctrl key to sit down"; //튜토리얼 첫번째 텍스트
+        textBoxes[1] = "Rabbit: Double Jump \nSlime: Tripple Jump "; //첫번째맵 2번
         textBoxes[2] = "Ghost: High Jump \nSnail: Low Jump \nRed Pig: Speed Up \nGreen Pig: Speed Down";
         textBoxes[3] = "Duck: Dash to Press 'X'";
         textBoxes[4] = "Green Bullet: Knock Back \nWhite Bullet: Teleport \nOrange Bullet: Freeze ";
