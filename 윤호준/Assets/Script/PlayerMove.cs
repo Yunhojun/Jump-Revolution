@@ -273,7 +273,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ladder")&&ver != 0)
+        if (collision.CompareTag("Ladder") && ver != 0)
         {
             if (!stuned)
             {
