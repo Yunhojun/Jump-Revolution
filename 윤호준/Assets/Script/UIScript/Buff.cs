@@ -27,8 +27,8 @@ public class Buff : MonoBehaviour
 
         buffTrf[0] = buff[0].transform;
         buffTrf[1] = buff[1].transform;
-        originalPos[0] = buffTrf[0].position;
-        originalPos[1] = buffTrf[1].position;
+        originalPos[0] = buffTrf[0].localPosition;
+        originalPos[1] = buffTrf[1].localPosition;
     }
 
     public void BuffStrart(Sprite s, float duration, bool type)
@@ -88,8 +88,8 @@ public class Buff : MonoBehaviour
 
     void InitializePos()
     {
-        buffTrf[0].position = originalPos[0];
-        buffTrf[1].position = originalPos[1];
+        buffTrf[0].localPosition = originalPos[0];
+        buffTrf[1].localPosition = originalPos[1];
     }
 
     IEnumerator FirstBuffCount(float duration)
@@ -98,14 +98,14 @@ public class Buff : MonoBehaviour
         buff[0].SetActive(true);
         if (secondBuffOn)
         {
-            if((Vector2)buffTrf[1].position == originalPos[0])
-                buffTrf[0].position = originalPos[1];
+            if((Vector2)buffTrf[1].localPosition == originalPos[0])
+                buffTrf[0].localPosition = originalPos[1];
             else
-                buffTrf[0].position = originalPos[0];
+                buffTrf[0].localPosition = originalPos[0];
         }
         else
         {
-            buffTrf[0].position = originalPos[0];
+            buffTrf[0].localPosition = originalPos[0];
         }
 
         print("111");
@@ -124,7 +124,7 @@ public class Buff : MonoBehaviour
 
         if (secondBuffOn)
         {
-            buffTrf[1].position = originalPos[0];
+            buffTrf[1].localPosition = originalPos[0];
         }
         else
         {
@@ -139,14 +139,14 @@ public class Buff : MonoBehaviour
         print("222");
         if (firstBuffOn)
         {
-            if ((Vector2)buffTrf[0].position == originalPos[0])
-                buffTrf[1].position = originalPos[1];
+            if ((Vector2)buffTrf[0].localPosition == originalPos[0])
+                buffTrf[1].localPosition = originalPos[1];
             else
-                buffTrf[1].position = originalPos[0];
+                buffTrf[1].localPosition = originalPos[0];
         }
         else
         {
-            buffTrf[1].position = originalPos[0];
+            buffTrf[1].localPosition = originalPos[0];
         }
 
         float buffTime = 0f;
@@ -166,9 +166,9 @@ public class Buff : MonoBehaviour
         {
             InitializePos();
         }
-        else if(firstBuffOn && originalPos[0] == (Vector2)buffTrf[1].position)
+        else if(firstBuffOn && originalPos[0] == (Vector2)buffTrf[1].localPosition)
         {
-            buffTrf[0].position = originalPos[0];
+            buffTrf[0].localPosition = originalPos[0];
         }
     }
 }

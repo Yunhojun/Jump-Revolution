@@ -100,7 +100,11 @@ public class PlayerMove : MonoBehaviour
         // 일어서기 버튼
         if(Input.GetKeyUp(KeyCode.LeftControl)&&isSit)
             Stand();
-                 
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            dashCount = 10;
+        }
              
    }
 
