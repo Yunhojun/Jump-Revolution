@@ -34,27 +34,27 @@ public class Rank : MonoBehaviour
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManFirst") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeFirst"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManFirst"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFirst"));
         else
-            rankDict.Add("null1", 100000);
+            rankDict.Add("null1", 359999);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManSecond") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeSecond"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManSecond"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeSecond"));
         else
-            rankDict.Add("null2", 100000);
+            rankDict.Add("null2", 359999);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManThird") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeThird"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManThird"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeThird"));
         else
-            rankDict.Add("null3", 100000);
+            rankDict.Add("null3", 359999);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManFourth") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeFourth"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManFourth"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFourth"));
         else
-            rankDict.Add("null4", 100000);
+            rankDict.Add("null4", 359999);
 
         if (PlayerPrefs.HasKey("Map" + mapNum + "ClearManFifth") && PlayerPrefs.HasKey("Map" + mapNum + "ClearTimeFifth"))
             rankDict.Add(PlayerPrefs.GetString("Map" + mapNum + "ClearManFifth"), PlayerPrefs.GetInt("Map" + mapNum + "ClearTimeFifth"));
         else
-            rankDict.Add("null5", 100000);
+            rankDict.Add("null5", 359999);
 
         if (rankDict.ContainsKey(gmr.inputName.text))
         {
