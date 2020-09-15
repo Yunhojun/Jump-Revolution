@@ -16,6 +16,7 @@ public class Gun : EnemyMove
     Collider2D bulletCol = null;
     bool fliped = false;
     public float bulletVelocity = 5;
+    private Coroutine coVar;
     //public float count = 0;
 
     // Start is called before the first frame update
@@ -70,11 +71,12 @@ public class Gun : EnemyMove
             {
                 if (bullet.hit == true)
                 {
-                    StartCoroutine(BulletRespawnLongTerm(3f));
+                    coVar = StartCoroutine(BulletRespawnLongTerm(3f));
                     bullet.hit = false;
                 }
 
             }
+            
 
         }
 
@@ -108,8 +110,19 @@ public class Gun : EnemyMove
     IEnumerator BulletRespawnLongTerm(float second)
     {
         yield return new WaitForSeconds(second);
-        anim.SetBool("Shot", false);
-        yield return new WaitForSeconds(0.25f);
-        RespawnBullet();
+        if (destroyed == false)
+        {
+            anim.SetBool("Shot", false);
+            yield return new WaitForSeconds(0.25f);
+            RespawnBullet();
+        }
+        else
+        {
+            StopCoroutine(coVar);
+            yield return new WaitForSeconds(5f);
+            anim.SetBool("Shot", false);
+            yield return new WaitForSeconds(0.25f);
+            RespawnBullet();
+        }
     }
 }
