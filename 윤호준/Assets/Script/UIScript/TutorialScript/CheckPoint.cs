@@ -56,7 +56,7 @@ public class CheckPoint : MonoBehaviour
         textBoxes[5] = "Chicken: General Monster \nBat: General Flying Monster ";
         textBoxes[6] = "End";
 
-        monsterText[0] = "Manipulation";
+        monsterText[0] = "Tutorial";
         monsterText[1] = "Jump Monster";
         monsterText[2] = "Buff/Debuff";
         monsterText[3] = "Dash Monster";
